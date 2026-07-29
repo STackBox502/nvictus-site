@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVICTUS Enterprise — AI Strategy for Small Business Owners | Louisville, KY</title>
+  <meta name="description" content="NVICTUS Enterprise makes enterprise-grade AI work for small business owners. AI audits, done-with-you setup, and ongoing strategy — without the tech-bro pitch or the enterprise price tag.">
+
+  <!-- ============================================ -->
+  <!-- FACEBOOK PIXEL                               -->
+  <!-- PASTE FACEBOOK PIXEL ID HERE                 -->
+  <!-- Replace YOUR_PIXEL_ID below in both places   -->
+  <!-- ============================================ -->
+  <!--
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+  /></noscript>
+  -->
+
+  <style>
+    /* ============ RESET & TOKENS ============ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0A0A0A;
+      --black-soft: #121212;
+      --black-card: #161616;
+      --gold: #C9A84C;
+      --gold-bright: #E0C068;
+      --white: #FFFFFF;
+      --gray: #A8A8A8;
+      --gray-dim: #6B6B6B;
+      --border: rgba(201, 168, 76, 0.18);
+      --max-width: 1100px;
+      --radius: 10px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    section { padding: 4.5rem 0; }
+
+    /* ============ TYPOGRAPHY ============ */
+    h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
+
+    h1 {
+      font-size: clamp(2.25rem, 6vw, 3.75rem);
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-intro {
+      color: var(--gray);
+      max-width: 38rem;
+      font-size: 1.05rem;
+    }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-block;
+      padding: 0.95rem 2rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+
+    .btn-ghost:hover { background: rgba(201, 168, 76, 0.1); }
+
+    /* ============ NAV ============ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: none;
+      gap: 1.75rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      padding: 0.55rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-toggle span {
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      list-style: none;
+      border-top: 1px solid var(--border);
+      padding: 0.5rem 0 1rem;
+    }
+
+    .nav-mobile.open { display: flex; }
+
+    .nav-mobile a {
+      display: block;
+      padding: 0.85rem 1.25rem;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-mobile a:active { color: var(--gold); }
+
+    /* ============ HERO ============ */
+    .hero {
+      padding: 5.5rem 0 5rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 0%, rgba(201, 168, 76, 0.08), transparent),
+        var(--black);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Tech splash: particle network canvas behind hero content */
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .hero .container { position: relative; z-index: 1; }
+
+    .hero h1 .accent {
+      color: var(--gold);
+      background: linear-gradient(100deg, var(--gold) 35%, #F5E3A8 50%, var(--gold) 65%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 5s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 100% 0; }
+      50% { background-position: 0 0; }
+    }
+
+    /* Pulse glow on the hero primary CTA */
+    .hero .btn-primary {
+      animation: ctaPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.45); }
+      50% { box-shadow: 0 0 24px 4px rgba(201, 168, 76, 0.25); }
+    }
+
+    /* ============ SCROLL REVEAL ============ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition-delay: var(--reveal-delay, 0s);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Card hover lift */
+    .pain-card, .tier, .quote-card {
+      transition: transform 0.25s ease, border-color 0.25s ease,
+                  opacity 0.6s ease;
+    }
+
+    .pain-card:hover, .tier:hover, .quote-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201, 168, 76, 0.45);
+    }
+
+    /* Keep reveal + hover transforms from fighting */
+    .reveal.visible.pain-card:hover,
+    .reveal.visible.tier:hover,
+    .reveal.visible.quote-card:hover { transform: translateY(-5px); }
+
+    /* ============ REDUCED MOTION ============ */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      #heroCanvas { display: none; }
+      .hero h1 .accent { animation: none; }
+      .hero .btn-primary { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .pain-card:hover, .tier:hover, .quote-card:hover { transform: none; }
+    }
+
+    .hero-sub {
+      color: var(--gray);
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      max-width: 36rem;
+      margin: 1.25rem 0 2rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .hero-note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--gray-dim);
+    }
+
+    /* ============ PROBLEM ============ */
+    .problem { background: var(--black-soft); }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .pain-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+
+    .pain-card .num {
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .pain-card h3 { margin-bottom: 0.6rem; }
+    .pain-card p { color: var(--gray); font-size: 0.97rem; }
+
+    /* ============ SERVICES ============ */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .tier {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier.featured {
+      border-color: var(--gold);
+      position: relative;
+    }
+
+    .tier.featured::before {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -11px;
+      left: 1.5rem;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .tier-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-price {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .tier-price small {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray);
+    }
+
+    .tier-outcome {
+      color: var(--white);
+      font-weight: 600;
+      margin: 0.75rem 0 1rem;
+      font-size: 1.05rem;
+    }
+
+    .tier ul {
+      list-style: none;
+      margin-bottom: 1.75rem;
+      flex-grow: 1;
+    }
+
+    .tier ul li {
+      color: var(--gray);
+      font-size: 0.93rem;
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+    }
+
+    .tier ul li::before {
+      content: "—";
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+    }
+
+    /* ============ HOW IT WORKS ============ */
+    .how { background: var(--black-soft); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+      counter-reset: step;
+    }
+
+    .step {
+      border-left: 2px solid var(--gold);
+      padding: 0.25rem 0 0.25rem 1.5rem;
+    }
+
+    .step .step-label {
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .step h3 { margin-bottom: 0.5rem; }
+    .step p { color: var(--gray); font-size: 0.97rem; }
+
+    /* ============ ABOUT ============ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: start;
+    }
+
+    .founder-mark {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+      background: var(--black-card);
+      flex-shrink: 0;
+    }
+
+    .about-copy p { color: var(--gray); margin-bottom: 1rem; font-size: 1.02rem; }
+    .about-copy p strong { color: var(--white); }
+
+    .about-copy .pull {
+      color: var(--white);
+      font-size: 1.15rem;
+      font-weight: 600;
+      border-left: 3px solid var(--gold);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    /* ============ SOCIAL PROOF ============ */
+    .proof { background: var(--black-soft); }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .quote-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+
+    .quote-card .stars { color: var(--gold); letter-spacing: 3px; margin-bottom: 0.85rem; }
+
+    .quote-card blockquote {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .quote-card cite {
+      color: var(--gray);
+      font-style: normal;
+      font-size: 0.9rem;
+    }
+
+    .quote-card cite strong { color: var(--gold); display: block; }
+
+    /* ============ FAQ ============ */
+    .faq-list { margin-top: 2.5rem; max-width: 46rem; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.25rem 2.25rem 1.25rem 0;
+      font-weight: 700;
+      font-size: 1.05rem;
+      position: relative;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 0.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 1.5rem;
+      font-weight: 400;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+
+    .faq-item .answer {
+      color: var(--gray);
+      padding: 0 0 1.5rem;
+      font-size: 0.98rem;
+      max-width: 42rem;
+    }
+
+    /* ============ FOOTER CTA ============ */
+    .footer-cta {
+      background:
+        radial-gradient(ellipse 70% 80% at 50% 100%, rgba(201, 168, 76, 0.1), transparent),
+        var(--black);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 5rem 0;
+    }
+
+    .footer-cta h2 { max-width: 34rem; margin-left: auto; margin-right: auto; }
+
+    .footer-cta .urgency {
+      color: var(--gray);
+      max-width: 32rem;
+      margin: 0.75rem auto 2rem;
+      font-size: 1.05rem;
+    }
+
+    .footer-cta .urgency strong { color: var(--gold); }
+
+    /* Discovery form */
+    .discovery-form {
+      max-width: 26rem;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: left;
+    }
+
+    .discovery-form label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .discovery-form input[type="text"],
+    .discovery-form input[type="email"],
+    .discovery-form input[type="tel"] {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      color: var(--white);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .discovery-form input:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 0;
+      border-color: var(--gold);
+    }
+
+    .discovery-form .btn { margin-top: 0.5rem; }
+
+    .or-divider {
+      color: var(--gray-dim);
+      font-size: 0.85rem;
+      margin: 1.25rem 0;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer p { color: var(--gray-dim); font-size: 0.85rem; }
+    .footer .footer-brand { color: var(--gray); font-weight: 700; letter-spacing: 0.05em; }
+    .footer .footer-brand span { color: var(--gold); }
+
+    /* ============ RESPONSIVE: TABLET+ ============ */
+    @media (min-width: 768px) {
+      section { padding: 6rem 0; }
+
+      .nav-links { display: flex; }
+      .nav-toggle { display: none; }
+      .nav-mobile { display: none !important; }
+
+      .card-grid { grid-template-columns: repeat(3, 1fr); }
+      .tier-grid { grid-template-columns: repeat(3, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+      .quote-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .about-grid {
+        grid-template-columns: auto 1fr;
+        gap: 3rem;
+      }
+
+      .founder-mark { width: 140px; height: 140px; font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="nav-logo">NVICTUS<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#problem">Why AI</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#book" class="btn btn-primary nav-cta">Book a Free 20-Minute Call</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="container">
+      <ul class="nav-mobile" id="navMobile">
+        <li><a href="#problem">Why AI</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#book">Book a Free 20-Minute Call →</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="container">
+        <h1>Your competitors are using AI.<br><span class="accent">You're about to use it better.</span></h1>
+        <p class="hero-sub">NVICTUS turns AI from something you've heard about into something that answers your phones, follows up with leads, and buys back your time — in weeks, not quarters.</p>
+        <div class="hero-ctas">
+          <a href="#book" class="btn btn-primary">Book a Free 20-Minute Call</a>
+          <a href="#services" class="btn btn-ghost">See Which Tier Fits You</a>
+        </div>
+        <p class="hero-note">No pitch deck. No jargon. No obligation. Just a straight answer on whether AI can help your business — and if the answer is no, we'll tell you that too.</p>
+      </div>
+    </section>
+
+    <!-- ============ 2. PROBLEM ============ -->
+    <section class="problem" id="problem">
+      <div class="container">
+        <span class="eyebrow">The Problem</span>
+        <h2>You know AI matters. Nobody's made it make sense.</h2>
+        <p class="section-intro">If you run a real business — crews in the field, chairs to fill, listings to close — here's what you're up against:</p>
+        <div class="card-grid">
+          <div class="pain-card">
+            <span class="num">01</span>
+            <h3>You're losing hours to work a machine should do</h3>
+            <p>Missed calls, manual follow-ups, scheduling back-and-forth, invoices typed by hand. Every one of those is revenue walking out the door while you do admin.</p>
+          </div>
+          <div class="pain-card">
+            <span class="num">02</span>
+            <h3>Every "AI expert" is selling you something</h3>
+            <p>Software vendors push their tool. Agencies push retainers before they know your business. Nobody starts with the question that matters: what would actually move <em>your</em> numbers?</p>
+          </div>
+          <div class="pain-card">
+            <span class="num">03</span>
+            <h3>Enterprise AI prices weren't built for you</h3>
+            <p>The consultants who know this stuff quote five figures and six-month timelines. So businesses like yours get left out of the biggest shift since the internet. That's the gap we exist to close.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. SERVICES ============ -->
+    <section id="services">
+      <div class="container">
+        <span class="eyebrow">Services</span>
+        <h2>Three ways to work with us. All of them start with your bottom line.</h2>
+        <!-- TODO(confirm): founding-client rate is a business claim. Confirm the number and the cap, or swap the reason. -->
+        <p class="section-intro">No bloated packages. No mystery pricing. These are founding-client rates, held for our first 25 owner-operated businesses while we build local case studies — after that they go up. Pick the level that matches where you are.</p>
+        <div class="tier-grid">
+
+          <div class="tier">
+            <div class="tier-name">AI Audit</div>
+            <div class="tier-price">$997</div>
+            <p class="tier-outcome">Know exactly where AI makes you money — in 90 minutes.</p>
+            <ul>
+              <li>You do zero prep — we ask the questions, you just talk about your business</li>
+              <li>Your top 3 automation opportunities, ranked by ROI, with the math shown</li>
+              <li>A written roadmap you own outright — use it with us, without us, or with anyone</li>
+            </ul>
+            <a href="#book" class="btn btn-ghost">Start With an Audit</a>
+          </div>
+
+          <div class="tier featured">
+            <div class="tier-name">AI Setup</div>
+            <div class="tier-price">$2,497</div>
+            <p class="tier-outcome">Your highest-ROI automation, built and running — with you, not at you.</p>
+            <ul>
+              <li>We handle the build — no new hires, no learning curve, no weekends lost to setup</li>
+              <li>Runs on the tools you already pay for. No rip-and-replace, no surprise software bills</li>
+              <li>Flat price agreed before we start, and your team trained before we call it done</li>
+            </ul>
+            <a href="#book" class="btn btn-primary">Get It Built</a>
+          </div>
+
+          <div class="tier">
+            <div class="tier-name">AI Retainer</div>
+            <div class="tier-price">$497<small>/month</small></div>
+            <p class="tier-outcome">An AI strategist on your team — for less than a part-time hire.</p>
+            <ul>
+              <!-- TODO(confirm): month-to-month with 30 days' notice — confirm this is your actual term. -->
+              <li>Month-to-month. Cancel with 30 days' notice and everything we built stays yours</li>
+              <li>We watch what breaks and fix it — you don't babysit the system</li>
+              <li>New tools deployed only when they earn their place, plus a monthly strategy session</li>
+            </ul>
+            <a href="#book" class="btn btn-ghost">Keep the Edge</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. HOW IT WORKS ============ -->
+    <section class="how" id="how">
+      <div class="container">
+        <span class="eyebrow">How It Works</span>
+        <h2>Audit. Strategy. Deploy. That's it.</h2>
+        <p class="section-intro">No discovery phases that last a quarter. No 40-page decks. Three steps from "behind on AI" to "running on it."</p>
+        <div class="steps">
+          <div class="step">
+            <span class="step-label">Step 1 — Audit</span>
+            <h3>We learn your business first</h3>
+            <p>90 minutes on how money comes in, where time leaks out, and what your day actually looks like. No tech talk required from you.</p>
+          </div>
+          <div class="step">
+            <span class="step-label">Step 2 — Strategy</span>
+            <h3>You get a ranked roadmap</h3>
+            <p>The three automations that will pay for themselves fastest, in plain English, with real numbers attached. You decide what happens next.</p>
+          </div>
+          <div class="step">
+            <span class="step-label">Step 3 — Deploy</span>
+            <h3>We build it with you</h3>
+            <p>The right tools, configured for your business, with your team trained to run them. Working in weeks — and you're never dependent on us to keep it running.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. ABOUT ============ -->
+    <section id="about">
+      <div class="container">
+        <span class="eyebrow">About</span>
+        <h2>Meet Chris Conley</h2>
+        <div class="about-grid">
+          <div class="founder-mark" aria-hidden="true">CC</div>
+          <div class="about-copy">
+            <p><strong>Chris Conley founded NVICTUS Enterprise on a simple observation:</strong> the businesses that need AI most are the ones every consultant ignores. The contractor booked solid but drowning in callbacks. The barbershop owner losing walk-ins to a phone nobody can answer. The real estate agent doing follow-up at midnight.</p>
+            <p class="pull">"Enterprise companies don't have better opportunities than you. They just have someone whose job is to find them. Now you do too."</p>
+            <p>Chris isn't a developer and isn't trying to be one. He's the translator — the person who knows what's real in AI, what's hype, and which tools will pay for themselves in your business specifically. He's spent years deploying automations for owner-operated businesses where the budget is real money and the results have to show up in the bank account, not a slide deck.</p>
+            <p>Based in Louisville, Kentucky, working with businesses nationwide, NVICTUS is built for Black, Brown, and underserved business owners who've been priced out of the AI conversation. Not as charity — as strategy. The owners who move first in their market win, and Chris's job is making sure that's you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. SOCIAL PROOF ============ -->
+    <section class="proof">
+      <div class="container">
+        <span class="eyebrow">Results</span>
+        <h2>Verified results, not testimonials we wrote for ourselves</h2>
+        <div class="quote-grid">
+
+          <!--
+            REAL RESULT — do not embellish. The star row is deliberately replaced with a
+            "verified" label: JLO never gave a 5-star review, and showing one would be
+            inventing a rating.
+            TODO(confirm): add the baseline and time window for the 500% figure
+            (e.g. "vs. their prior 30-day average"), or drop the percentage.
+          -->
+          <div class="quote-card">
+            <div class="stars" aria-hidden="true">VERIFIED RESULT</div>
+            <blockquote>HeyGen Facebook video and post built for JLO Home Solutions: 4 new customers and 500% engagement growth on the campaign.</blockquote>
+            <cite><strong>JLO Home Solutions</strong>Home services — Louisville, KY</cite>
+          </div>
+
+          <!--
+            No second verified client yet, so this card does NOT pretend to be one.
+            It states the honest position instead. Swap it for a real testimonial the
+            moment you have one — same three lines: label, quote, cite.
+          -->
+          <div class="quote-card">
+            <div class="stars" aria-hidden="true">FOUNDING CLIENTS</div>
+            <blockquote>We're early on purpose. The first 25 owner-operated businesses get founding rates — and become the case studies this page gets built on. Your result goes here.</blockquote>
+            <cite><strong>Now booking</strong>Louisville, KY — and nationwide</cite>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. FAQ ============ -->
+    <section id="faq">
+      <div class="container">
+        <span class="eyebrow">FAQ</span>
+        <h2>Straight answers</h2>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary>Is $997 worth it for a 90-minute audit?</summary>
+            <!-- TODO(confirm): the refund sentence is a real commitment. Confirm it before this goes live. -->
+            <p class="answer">The audit isn't 90 minutes of talking — it's a written roadmap that identifies your three highest-ROI automation opportunities, ranked, with the math shown. Most owners find one item on that list that covers the fee many times over in the first year. $997 is a founding-client rate while we build local case studies; it goes up once those first 25 spots are filled. And the roadmap is yours: you can hand it to anyone to implement, including yourself. If you read it and don't think it was worth the fee, tell us and we'll refund it. You're never locked in.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How fast will I see results?</summary>
+            <p class="answer">The audit and roadmap are delivered within a week of your session. If you move to Setup, your first automation is typically live within 2–4 weeks. We deliberately start with the fastest-payback opportunity, so the first thing we build is usually the one you feel immediately — fewer missed calls, faster follow-up, hours back in your week.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>I'm not technical. Is that a problem?</summary>
+            <p class="answer">It's the whole point. NVICTUS exists for owners who are great at their business and have zero interest in becoming software people. Everything we deploy is chosen because your team can actually run it. We do the setup with you, train your people in plain English, and you're never left with a system only we understand.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What makes NVICTUS different from an agency or a software vendor?</summary>
+            <p class="answer">A vendor sells you their tool whether it fits or not. An agency sells you hours. We sell you an outcome: the right automation for your business, picked from the whole market, deployed fast, with the math justified up front. We're not married to any platform and we don't profit from complexity — the simpler the solution that gets you the result, the better we look.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What if I don't like what you build?</summary>
+            <!-- TODO(confirm): staged sign-off + don't-pay-the-balance is a real guarantee. Confirm before launch. -->
+            <p class="answer">You see it working before you're asked to keep it. Setup is built in stages, and you sign off at each one — so there's no big reveal at the end that misses the mark. If the system doesn't do what we said it would, we fix it or you don't pay the balance. We'd rather lose a build than have you paying for something that sits unused.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Am I locked into a contract?</summary>
+            <!-- TODO(confirm): month-to-month, 30 days' notice — must match your actual retainer terms. -->
+            <p class="answer">No. The audit is a one-off with nothing attached. Setup is a flat, per-project price you approve before we start. The retainer is month-to-month — cancel with 30 days' notice, and everything we've built stays yours and keeps running. We keep clients with results, not paperwork.</p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. FOOTER CTA ============ -->
+    <section class="footer-cta" id="book">
+      <div class="container">
+        <h2>Twenty minutes. Zero pressure. A straight answer.</h2>
+        <p class="urgency">Every month you wait, a competitor in your market figures this out first. <strong>The call is free, there's nothing to sign, and you'll leave knowing what's worth automating — whether you hire us or not.</strong></p>
+
+        <form name="discovery-call" method="POST" netlify class="discovery-form">
+          <input type="hidden" name="form-name" value="discovery-call">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@yourbusiness.com">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(502) 555-0100">
+          <label for="business">What's your business?</label>
+          <input type="text" id="business" name="business" placeholder="e.g., HVAC, barbershop, real estate">
+          <button type="submit" class="btn btn-primary">Book a Free 20-Minute Call</button>
+        </form>
+
+        <!-- TODO(launch): swap #book for your real Calendly/Cal.com URL when you have one.
+             Until then this points at the form above so the button is never a dead link. -->
+        <p class="or-divider">— or book directly —</p>
+        <a href="#book" class="btn btn-ghost">Pick a Time on the Calendar</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">NVICTUS<span>.</span> ENTERPRISE LLC</p>
+      <p>Louisville, KY — Serving business owners nationwide</p>
+      <p>© 2026 NVICTUS Enterprise LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('navMobile');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile menu after tapping a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Scroll reveal: stagger siblings inside each grid, single elements reveal alone
+    if (!reducedMotion && 'IntersectionObserver' in window) {
+      const groups = ['.card-grid', '.tier-grid', '.steps', '.quote-grid'];
+      groups.forEach(sel => {
+        document.querySelectorAll(sel).forEach(grid => {
+          [...grid.children].forEach((child, i) => {
+            child.classList.add('reveal');
+            child.style.setProperty('--reveal-delay', (i * 0.12) + 's');
+          });
+        });
+      });
+      document.querySelectorAll('section h2, .section-intro, .about-grid, .faq-list, .discovery-form').forEach(el => {
+        el.classList.add('reveal');
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    // Hero tech splash: gold particle network
+    if (!reducedMotion) {
+      const canvas = document.getElementById('heroCanvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let raf;
+
+      function sizeCanvas() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        seedParticles(rect.width, rect.height);
+      }
+
+      function seedParticles(w, h) {
+        const count = Math.min(Math.floor(w / 18), 70);
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 1.6 + 0.6
+        }));
+      }
+
+      function frame() {
+        const w = canvas.parentElement.clientWidth;
+        const h = canvas.parentElement.clientHeight;
+        ctx.clearRect(0, 0, w, h);
+
+        const LINK_DIST = 130;
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(201, 168, 76, 0.6)';
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const dx = p.x - q.x, dy = p.y - q.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < LINK_DIST) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = 'rgba(201, 168, 76, ' + (0.22 * (1 - dist / LINK_DIST)) + ')';
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        raf = requestAnimationFrame(frame);
+      }
+
+      // Pause the animation when the hero is off-screen
+      const heroObserver = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          if (!raf) raf = requestAnimationFrame(frame);
+        } else {
+          cancelAnimationFrame(raf);
+          raf = null;
+        }
+      });
+
+      sizeCanvas();
+      heroObserver.observe(canvas.parentElement);
+      window.addEventListener('resize', sizeCanvas);
+    }
+  </script>
+</body>
+</html>
