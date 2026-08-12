@@ -5,56 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NVICTUS Enterprise — AI Strategy for Small Business Owners | Louisville, KY</title>
   <meta name="description" content="NVICTUS Enterprise makes enterprise-grade AI work for small business owners. AI audits, done-with-you setup, and ongoing strategy — without the tech-bro pitch or the enterprise price tag.">
-  <link rel="preload" href="assets/hero.webp" as="image" fetchpriority="high">
-
-  <!-- ============================================ -->
-  <!-- FACEBOOK PIXEL                               -->
-  <!-- PASTE FACEBOOK PIXEL ID HERE                 -->
-  <!-- Replace YOUR_PIXEL_ID below in both places   -->
-  <!-- ============================================ -->
-  <!--
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', 'YOUR_PIXEL_ID');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
-  /></noscript>
-  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
+    /* ============ FLOATING PHOENIX FIELD (decorative only) ============
+       Purely additive background layer. Fixed, non-interactive, behind all
+       content. The logo is used as-is: `contain` guarantees no stretching and
+       no cropping, and nothing recolours it. */
+    .phoenix-field {
+      position: fixed;
+      inset: 0;
+      z-index: 0;              /* above body background, below content */
+      pointer-events: none;    /* never intercepts taps, clicks or scroll */
+      overflow: hidden;        /* no scrollbars, no bleed */
+      contain: layout paint style;  /* isolate: no layout shift, cheaper paint */
+    }
+
+    /* Content sits above the field. Additive only — no visual change. */
+    main, footer { position: relative; z-index: 1; }
+
+    .phoenix {
+      position: absolute;
+      display: block;
+      /* Intrinsic ratio of the supplied logo, so it can never distort. */
+      aspect-ratio: 429 / 471;
+      background-image: url("assets/phoenix.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      will-change: transform;
+      animation: phoenixDrift 72s ease-in-out infinite alternate;
+    }
+
+    /* Slow, small-amplitude drift — premium, not distracting. */
+    @keyframes phoenixDrift {
+      from { transform: translate3d(0, 0, 0) rotate(0deg); }
+      to   { transform: translate3d(0, -3.5vh, 0) rotate(4deg); }
+    }
+
+    /* Six copies: varied size, position, pace and phase so no pattern reads. */
+    .phoenix-1 { width: clamp(150px, 20vw, 320px); top: 6%;  left: -4%;  opacity: 0.055; animation-duration: 66s; }
+    .phoenix-2 { width: clamp(120px, 15vw, 240px); top: 24%; right: -3%; opacity: 0.045; animation-duration: 84s; animation-delay: -22s; }
+    .phoenix-3 { width: clamp(170px, 24vw, 380px); top: 52%; left: 8%;   opacity: 0.035; animation-duration: 96s; animation-delay: -48s; }
+    .phoenix-4 { width: clamp(110px, 14vw, 220px); top: 70%; right: 10%; opacity: 0.06;  animation-duration: 74s; animation-delay: -12s; }
+    .phoenix-5 { width: clamp(130px, 17vw, 280px); top: 88%; left: 32%;  opacity: 0.04;  animation-duration: 90s; animation-delay: -60s; }
+    .phoenix-6 { width: clamp(100px, 12vw, 190px); top: 40%; right: 34%; opacity: 0.03;  animation-duration: 80s; animation-delay: -35s; }
+
+    /* Phones: thin the field so it stays atmospheric, not busy — and lighter. */
+    @media (max-width: 699px) {
+      .phoenix-3, .phoenix-6 { display: none; }
+      .phoenix-1 { width: 44vw; opacity: 0.05; }
+      .phoenix-2 { width: 34vw; }
+      .phoenix-4 { width: 30vw; }
+      .phoenix-5 { width: 38vw; }
+    }
+
+    /* Motion is decorative: honour the user's system setting. */
+    @media (prefers-reduced-motion: reduce) {
+      .phoenix { animation: none; }
+    }
+
     /* ============ RESET & TOKENS ============ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --black: #0A0A0A;
-      --black-soft: #121212;
-      --black-card: #161616;
+      --black-soft: #101010;
+      --black-card: #141414;
       --gold: #C9A84C;
       --gold-bright: #E0C068;
+      --gold-deep: #8A6F26;
       --white: #FFFFFF;
       --gray: #A8A8A8;
       --gray-dim: #6B6B6B;
-      --border: rgba(201, 168, 76, 0.18);
-      --max-width: 1100px;
-      --radius: 10px;
+      --line: rgba(255, 255, 255, 0.10);
+      --line-gold: rgba(201, 168, 76, 0.28);
+
+      /* Template geometry: pill controls, 30px blocks, 20px cards */
+      --r-pill: 1000px;
+      --r-block: 30px;
+      --r-card: 20px;
+
+      --max: 1200px;
+      /* Reading measure. 46rem ran ~87 characters per line — well past the
+         50-75 range where prose stays readable. 37rem lands about 70. */
+      --measure: 37rem;
+
+      --serif: "Crimson Text", Georgia, "Times New Roman", serif;
+      --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+      /* Stop iOS inflating type when the phone rotates to landscape. */
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
     body {
       background: var(--black);
       color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -62,120 +119,148 @@
 
     .container {
       width: 100%;
-      max-width: var(--max-width);
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding: 0 1.5rem;
     }
 
-    section { padding: 4.5rem 0; }
+    section { padding: 7rem 0; }
 
-    /* ============ TYPOGRAPHY ============ */
-    h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
+    /* ============ TYPOGRAPHY ============
+       Template's move: serif display at weight 400, very tight leading and
+       negative tracking, set against small mono labels. */
+    /* Leading note: the template runs 0.85 because its headline is ONE short
+       line. Ours wrap to 3-4 lines, where sub-1.0 leading puts the next line's
+       ascenders through this line's descenders. 1.02-1.12 keeps the tight
+       display feel without the collision. */
+    h1, h2, h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      overflow-wrap: break-word;
+    }
 
     h1 {
-      font-size: clamp(2.25rem, 6vw, 3.75rem);
-      font-weight: 800;
+      font-size: clamp(2.75rem, 8vw, 6rem);
+      line-height: 1.02;
     }
 
     h2 {
-      font-size: clamp(1.75rem, 4.5vw, 2.5rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
+      font-size: clamp(2.125rem, 5.5vw, 3.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.25rem;
     }
 
     h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
+      font-size: clamp(1.3125rem, 2.4vw, 1.625rem);
+      line-height: 1.18;
     }
 
+    /* Mono eyebrow — the template's section labels */
     .eyebrow {
-      display: inline-block;
+      display: block;
+      font-family: var(--mono);
       color: var(--gold);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.75rem;
     }
 
     .section-intro {
       color: var(--gray);
-      max-width: 38rem;
-      font-size: 1.05rem;
+      max-width: var(--measure);
+      font-size: 1.0625rem;
     }
 
-    /* ============ BUTTONS ============ */
+    em { font-family: var(--serif); font-size: 1.1em; font-style: italic; }
+
+    /* ============ BUTTONS — pill geometry ============ */
     .btn {
       display: inline-block;
-      padding: 0.95rem 2rem;
-      border-radius: 6px;
+      padding: 1rem 2.25rem;
+      border-radius: var(--r-pill);
+      font-family: var(--sans);
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
       text-decoration: none;
       text-align: center;
-      transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
       cursor: pointer;
-      border: none;
+      border: 1px solid transparent;
     }
 
-    .btn-primary {
-      background: var(--gold);
-      color: var(--black);
-    }
-
+    .btn-primary { background: var(--gold); color: var(--black); }
     .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
 
-    .btn-ghost {
-      background: transparent;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-    }
+    .btn-ghost { background: transparent; color: var(--gold); border-color: var(--line-gold); }
+    .btn-ghost:hover { border-color: var(--gold); background: rgba(201, 168, 76, 0.08); }
 
-    .btn-ghost:hover { background: rgba(201, 168, 76, 0.1); }
-
-    /* ============ NAV ============ */
+    /* ============ NAV — floating pill ============ */
     .nav {
       position: sticky;
-      top: 0;
+      top: 1rem;
       z-index: 100;
-      background: rgba(10, 10, 10, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      margin: 1rem auto 0;
+      width: calc(100% - 2rem);
+      max-width: var(--max);
+      /* Near-opaque on purpose: content scrolls under this pill, and at 0.72
+         the text read straight through it. */
+      background: rgba(14, 14, 14, 0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      overflow: hidden;
+      transition: background 0.3s ease, border-color 0.3s ease, border-radius 0.2s ease;
+    }
+
+    /* An open mobile menu can't live inside a pill — square it off while open.
+       Driven by a JS-toggled class, not :has(), so it works on older Safari
+       and Firefox too. */
+    .nav.nav-open { border-radius: 28px; }
+
+    .nav.nav-scrolled {
+      background: rgba(10, 10, 10, 0.97);
+      border-color: var(--line-gold);
+    }
+
+    /* No blur support = fully opaque, or text shows through. */
+    @supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+      .nav, .nav.nav-scrolled { background: #0E0E0E; }
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 68px;
+      height: 62px;
+      padding: 0 0.6rem 0 1.5rem;
+      max-width: none;
     }
 
     .nav-logo {
-      font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: 0.06em;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      letter-spacing: -0.02em;
       color: var(--white);
       text-decoration: none;
+      white-space: nowrap;
+      /* Full-height hit area rather than a 28px sliver. */
+      display: flex;
+      align-items: center;
+      min-height: 44px;
     }
 
     .nav-logo span { color: var(--gold); }
 
-    /* Past the hero, the nav condenses: deeper blur, hairline gold rule */
-    .nav {
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-
-    .nav.nav-scrolled {
-      background: rgba(10, 10, 10, 0.97);
-      backdrop-filter: blur(16px);
-      border-bottom-color: rgba(201, 168, 76, 0.4);
-    }
-
-    /* 2px page progress along the very top */
     .scroll-progress {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 2px;
       background: linear-gradient(90deg, var(--gold), var(--gold-bright));
@@ -194,31 +279,35 @@
     .nav-links a {
       color: var(--gray);
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
       transition: color 0.15s ease;
     }
 
     .nav-links a:hover { color: var(--white); }
 
-    .nav-cta {
-      padding: 0.55rem 1.2rem;
-      font-size: 0.9rem;
-    }
+    .nav-cta { padding: 0.6rem 1.25rem; font-size: 0.8125rem; }
+    .nav-links .nav-cta { color: var(--black); }
 
     .nav-toggle {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 8px;
+      /* 44x44 minimum touch target. */
+      width: 44px;
+      min-height: 44px;
+      padding: 10px;
+      margin-right: 0.5rem;
     }
 
     .nav-toggle span {
-      width: 22px;
-      height: 2px;
+      width: 20px; height: 1.5px;
       background: var(--white);
       transition: transform 0.2s ease, opacity 0.2s ease;
     }
@@ -226,9 +315,8 @@
     .nav-mobile {
       display: none;
       flex-direction: column;
-      gap: 0;
       list-style: none;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--line);
       padding: 0.5rem 0 1rem;
     }
 
@@ -236,39 +324,42 @@
 
     .nav-mobile a {
       display: block;
-      padding: 0.85rem 1.25rem;
+      padding: 0.85rem 1.75rem;
       color: var(--white);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
+      font-size: 0.9375rem;
     }
 
     .nav-mobile a:active { color: var(--gold); }
 
-    /* ============ HERO ============ */
+    /* ============ HERO — centred display, image block beneath ============ */
+    /* Text-only hero. The old padding (144/136px) was sized for an art block
+       that no longer exists, leaving ~250px of dead space before the next
+       section. Tightened so the type sits closer to the fold. */
     .hero {
-      padding: 5.5rem 0 5rem;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 0%, rgba(201, 168, 76, 0.08), transparent),
-        var(--black);
-      border-bottom: 1px solid var(--border);
       position: relative;
+      padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem);
       overflow: hidden;
+      text-align: center;
     }
 
-    /* Tech splash: particle network canvas behind hero content */
     #heroCanvas {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 0.4;
     }
 
     .hero .container { position: relative; z-index: 1; }
 
+    .hero h1 { margin: 0 auto; max-width: 18ch; text-wrap: balance; }
+
     .hero h1 .accent {
       color: var(--gold);
+      font-style: italic;
       background: linear-gradient(100deg, var(--gold) 35%, #F5E3A8 50%, var(--gold) 65%);
       background-size: 250% 100%;
       -webkit-background-clip: text;
@@ -282,637 +373,524 @@
       50% { background-position: 0 0; }
     }
 
-    /* Pulse glow on the hero primary CTA */
-    .hero .btn-primary {
-      animation: ctaPulse 3s ease-in-out infinite;
-    }
-
-    @keyframes ctaPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.45); }
-      50% { box-shadow: 0 0 24px 4px rgba(201, 168, 76, 0.25); }
-    }
-
-    /* ============ HERO IMAGE LAYERS ============ */
-    /* Layer order (back to front): .hero-bg photo -> .hero-scrim gradient ->
-       #heroCanvas particles -> .container copy. DOM order handles stacking. */
-    .hero {
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-    }
-
-    /* Top-aligned with the frame (face stays in view at rest) and overscanned
-       BELOW, so the upward parallax drift never exposes an edge. 45% keeps the
-       subject around 70% of screen width across 1280-2560px viewports. */
-    .hero-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 118%;
-      background: url("assets/hero.webp") 45% center / cover no-repeat;
-      will-change: transform;
-    }
-
-    @media (max-width: 900px) {
-      .hero-bg { background-position: 62% center; }
-    }
-
-    .hero-scrim {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg,
-        rgba(10, 10, 10, 0.96) 0%,
-        rgba(10, 10, 10, 0.82) 45%,
-        rgba(10, 10, 10, 0.30) 100%);
-    }
-
-    /* Over the photo, --gray-dim doesn't clear 4.5:1 — the note steps up to --gray */
-    .hero .hero-note { color: var(--gray); }
-
-    .scroll-cue {
-      position: absolute;
-      left: 50%;
-      bottom: 1.4rem;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 46px;
-      overflow: hidden;
-      border-radius: 1px;
-      background: rgba(201, 168, 76, 0.18);
-      transition: opacity 0.4s ease;
-    }
-
-    .scroll-cue span {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 45%;
-      background: linear-gradient(180deg, transparent, var(--gold));
-      animation: cueDrip 2.2s ease-in-out infinite;
-    }
-
-    .scroll-cue.cue-hidden { opacity: 0; }
-
-    @keyframes cueDrip {
-      0%   { transform: translateY(-110%); }
-      55%  { transform: translateY(230%); }
-      100% { transform: translateY(230%); }
-    }
-
-    /* Hero entrance: h1, subhead, CTA row, note rise in sequence */
-    @media (prefers-reduced-motion: no-preference) {
-      .hero .container > * {
-        opacity: 0;
-        transform: translateY(16px);
-        animation: heroRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      }
-      .hero .container > :nth-child(1) { animation-delay: 0.05s; }
-      .hero .container > :nth-child(2) { animation-delay: 0.14s; }
-      .hero .container > :nth-child(3) { animation-delay: 0.23s; }
-      .hero .container > :nth-child(4) { animation-delay: 0.32s; }
-    }
-
-    @keyframes heroRise {
-      to { opacity: 1; transform: none; }
-    }
-
-    /* Portrait viewports crop the frame's empty left side, so the scrim
-       shifts to a vertical wash that keeps the headline readable */
-    @media (max-width: 767px) {
-      .hero-scrim {
-        background: linear-gradient(180deg,
-          rgba(10, 10, 10, 0.94) 0%,
-          rgba(10, 10, 10, 0.72) 55%,
-          rgba(10, 10, 10, 0.88) 100%);
-      }
-    }
-
-    /* ============ SECTION SCENES ============ */
-    /* Framed stills inside sections. The <figure> holds the aspect ratio
-       (no layout shift); .scene-inner is overscanned and translated by the
-       scroll engine for a gentle in-frame parallax. */
-    .scene {
-      position: relative;
-      margin-top: 2.5rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .scene-wide { aspect-ratio: 1600 / 893; }
-    .scene-about { aspect-ratio: 1400 / 1045; }
-
-    .scene-inner {
-      position: absolute;
-      inset: -7% 0;
-      will-change: transform;
-    }
-
-    .scene-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Reveal: the frame stays put; the image settles from a slight zoom.
-       The scene keeps .reveal so the existing observer picks it up. */
-    .scene.reveal { opacity: 1; transform: none; transition: none; }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .scene .scene-inner img {
-        opacity: 0;
-        transform: scale(1.06);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-      }
-      .scene.visible .scene-inner img { opacity: 1; transform: scale(1); }
-    }
-
-    /* ============ SCROLL REVEAL ============ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      transition-delay: var(--reveal-delay, 0s);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Card hover lift */
-    .pain-card, .tier, .quote-card {
-      transition: transform 0.25s ease, border-color 0.25s ease,
-                  opacity 0.6s ease;
-    }
-
-    .pain-card:hover, .tier:hover, .quote-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(201, 168, 76, 0.45);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 168, 76, 0.25);
-    }
-
-    /* Section headings underline themselves as they reveal */
-    .problem h2::after, #services h2::after, .how h2::after,
-    #about h2::after, .proof h2::after, #faq h2::after {
-      content: "";
-      display: block;
-      width: 64px;
-      height: 2px;
-      margin-top: 0.85rem;
-      background: linear-gradient(90deg, var(--gold), rgba(201, 168, 76, 0));
-      transform: scaleX(0);
-      transform-origin: 0 50%;
-      transition: transform 0.6s ease 0.35s;
-    }
-
-    .problem h2.visible::after, #services h2.visible::after, .how h2.visible::after,
-    #about h2.visible::after, .proof h2.visible::after, #faq h2.visible::after {
-      transform: scaleX(1);
-    }
-
-    /* Keep reveal + hover transforms from fighting */
-    .reveal.visible.pain-card:hover,
-    .reveal.visible.tier:hover,
-    .reveal.visible.quote-card:hover { transform: translateY(-5px); }
-
-    /* ============ REDUCED MOTION ============ */
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      #heroCanvas { display: none; }
-      .hero h1 .accent { animation: none; }
-      .hero .btn-primary { animation: none; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .pain-card:hover, .tier:hover, .quote-card:hover { transform: none; }
-      .scroll-cue { display: none; }
-      .problem h2::after, #services h2::after, .how h2::after,
-      #about h2::after, .proof h2::after, #faq h2::after {
-        transform: scaleX(1);
-        transition: none;
-      }
-    }
-
     .hero-sub {
       color: var(--gray);
-      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      font-size: clamp(1rem, 1.6vw, 1.1875rem);
       max-width: 36rem;
-      margin: 1.25rem 0 2rem;
+      margin: 2rem auto 0;
     }
 
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .hero .btn-primary { animation: ctaPulse 3s ease-in-out infinite; }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+      50% { box-shadow: 0 0 26px 4px rgba(201, 168, 76, 0.22); }
     }
 
     .hero-note {
-      margin-top: 1rem;
-      font-size: 0.85rem;
       color: var(--gray-dim);
+      font-size: 0.8125rem;
+      /* 13px type needs a narrower box to stay near 70 characters. */
+      max-width: 29rem;
+      margin: 1.75rem auto 0;
     }
 
-    /* ============ PROBLEM ============ */
-    .problem { background: var(--black-soft); }
+    /* ============ SHARED IMAGE BLOCKS ============ */
+    .scene {
+      border-radius: var(--r-block);
+      overflow: hidden;
+      margin: 3rem 0;
+      border: 1px solid var(--line);
+    }
+
+    .scene-inner { will-change: transform; }
+    .scene-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+    .scene-wide { aspect-ratio: 16 / 7; }
+    .scene-wide .scene-inner { height: 116%; margin-top: -8%; }
+
+    /* Full-body portrait: frame matches the source 3:4 exactly so `cover` crops
+       nothing, and the parallax overscan is cut to 6% (from 12%) so the drift
+       can't shave off his head or his shoes. */
+    .scene-about { aspect-ratio: 3 / 4; margin: 0; }
+    .scene-about .scene-inner { height: 106%; margin-top: -3%; }
+
+    .band {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .band-inner {
+      border-radius: var(--r-block);
+      overflow: hidden;
+      aspect-ratio: 21 / 7;
+      border: 1px solid var(--line);
+      will-change: transform;
+    }
+
+    .band-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ============ PROBLEM — image left, numbered list right ============ */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      /* The portrait image is now TALLER than the list (671 vs 518), which is
+         the reverse of the old landscape shot. Top-aligning it leaves a ragged
+         150px tail, so centre the shorter column against the taller one. */
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    /* Portrait frame: the problem image is 3:4, so a landscape box would crop
+       the group's heads off. 4:5 is near its native ratio — almost no crop. */
+    .split .scene { margin: 0; aspect-ratio: 4 / 5; }
+    .split .scene-inner { height: 112%; margin-top: -6%; }
 
     .card-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-top: 2.5rem;
+      gap: 0;
     }
 
     .pain-card {
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.5rem;
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--line);
     }
 
-    .pain-card .num {
+    .pain-card:last-child { border-bottom: 1px solid var(--line); }
+
+    .num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
       color: var(--gold);
-      font-size: 0.85rem;
-      font-weight: 800;
       letter-spacing: 0.1em;
-      display: block;
-      margin-bottom: 0.75rem;
+      padding-top: 0.4rem;
     }
 
-    .pain-card h3 { margin-bottom: 0.6rem; }
-    .pain-card p { color: var(--gray); font-size: 0.97rem; }
+    .pain-card h3 { margin-bottom: 0.625rem; }
+    .pain-card p { color: var(--gray); font-size: 0.9375rem; grid-column: 2; }
 
-    /* ============ SERVICES ============ */
+    /* ============ SERVICES — 3-column comparison table ============ */
     .tier-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-top: 2.5rem;
+      gap: 0;
+      margin-top: 3.5rem;
+      border-top: 1px solid var(--line);
     }
 
     .tier {
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem 1.75rem;
       display: flex;
       flex-direction: column;
-    }
-
-    .tier.featured {
-      border-color: var(--gold);
-      position: relative;
-    }
-
-    .tier.featured::before {
-      content: "MOST POPULAR";
-      position: absolute;
-      top: -11px;
-      left: 1.5rem;
-      background: var(--gold);
-      color: var(--black);
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      padding: 3px 10px;
-      border-radius: 4px;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line);
     }
 
     .tier-name {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
+      color: var(--gray);
+      margin-bottom: 1.25rem;
     }
+
+    .tier.featured .tier-name { color: var(--gold); }
 
     .tier-price {
-      font-size: 2.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-family: var(--serif);
+      font-size: clamp(2.75rem, 5vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
     }
 
-    .tier-price small {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--gray);
-    }
+    .tier.featured .tier-price { color: var(--gold); }
+    .tier-price small { font-family: var(--sans); font-size: 0.9375rem; font-weight: 400; color: var(--gray-dim); letter-spacing: 0; }
 
     .tier-outcome {
-      color: var(--white);
-      font-weight: 600;
-      margin: 0.75rem 0 1rem;
-      font-size: 1.05rem;
-    }
-
-    .tier ul {
-      list-style: none;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      line-height: 1.25;
       margin-bottom: 1.75rem;
-      flex-grow: 1;
+      color: var(--white);
     }
 
-    .tier ul li {
-      color: var(--gray);
-      font-size: 0.93rem;
-      padding: 0.4rem 0 0.4rem 1.5rem;
+    .tier ul { list-style: none; margin-bottom: 2rem; }
+
+    .tier li {
       position: relative;
+      padding: 0.75rem 0 0.75rem 1.75rem;
+      color: var(--gray);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      border-top: 1px solid var(--line);
     }
 
-    .tier ul li::before {
-      content: "—";
-      color: var(--gold);
+    /* Template marks every row with a check glyph. */
+    .tier li::before {
+      content: "✓";
       position: absolute;
-      left: 0;
+      left: 0; top: 0.75rem;
+      color: var(--gold);
+      font-size: 0.8125rem;
     }
 
-    /* ============ HOW IT WORKS ============ */
-    .how { background: var(--black-soft); }
+    .tier .btn { margin-top: auto; align-self: flex-start; }
 
+    /* ============ HOW — numbered steps ============ */
     .steps {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-      counter-reset: step;
+      gap: 0;
+      margin-top: 3.5rem;
+      border-top: 1px solid var(--line);
     }
 
-    .step {
-      border-left: 2px solid var(--gold);
-      padding: 0.25rem 0 0.25rem 1.5rem;
-    }
+    .step { padding: 2rem 0; border-bottom: 1px solid var(--line); }
 
-    .step .step-label {
-      color: var(--gold);
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .step-label {
       display: block;
-      margin-bottom: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
     }
 
-    .step h3 { margin-bottom: 0.5rem; }
-    .step p { color: var(--gray); font-size: 0.97rem; }
+    .step h3 { margin-bottom: 0.75rem; }
+    .step p { color: var(--gray); font-size: 0.9375rem; }
 
     /* ============ ABOUT ============ */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
+      gap: 3rem;
+      margin-top: 3rem;
       align-items: start;
     }
 
-    /* The founder portrait (assets/about.webp) sits in the old monogram slot */
-    .about-grid .scene { margin-top: 0; }
-
-    .about-copy p { color: var(--gray); margin-bottom: 1rem; font-size: 1.02rem; }
-    .about-copy p strong { color: var(--white); }
+    /* The longest prose on the page — it ran 87 characters per line uncapped. */
+    .about-copy { max-width: 34rem; }
+    .about-copy p { color: var(--gray); margin-bottom: 1.25rem; font-size: 0.9375rem; }
+    .about-copy p strong { color: var(--white); font-weight: 700; }
 
     .about-copy .pull {
+      font-family: var(--serif);
+      font-size: clamp(1.3125rem, 2.6vw, 1.75rem);
+      line-height: 1.28;
+      letter-spacing: -0.02em;
       color: var(--white);
-      font-size: 1.15rem;
-      font-weight: 600;
-      border-left: 3px solid var(--gold);
-      padding-left: 1rem;
-      margin: 1.5rem 0;
+      border-left: 2px solid var(--gold);
+      padding: 0.25rem 0 0.25rem 1.5rem;
+      margin: 2rem 0;
     }
 
-    /* ============ SOCIAL PROOF ============ */
-    .proof { background: var(--black-soft); }
-
+    /* ============ PROOF ============ */
     .quote-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-top: 2.5rem;
+      gap: 0;
+      margin-top: 3.5rem;
+      border-top: 1px solid var(--line);
     }
 
-    .quote-card {
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-    }
+    .quote-card { padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
 
-    .quote-card .stars { color: var(--gold); letter-spacing: 3px; margin-bottom: 0.85rem; }
+    .stars {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
 
     .quote-card blockquote {
-      color: var(--white);
-      font-size: 1rem;
-      margin-bottom: 1rem;
+      font-family: var(--serif);
+      font-size: clamp(1.3125rem, 2.4vw, 1.625rem);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
     }
 
     .quote-card cite {
-      color: var(--gray);
       font-style: normal;
-      font-size: 0.9rem;
+      font-size: 0.8125rem;
+      color: var(--gray-dim);
+      display: block;
     }
 
-    .quote-card cite strong { color: var(--gold); display: block; }
-
-    /* ============ FULL-BLEED BAND ============ */
-    /* A breath between sections: no text, just the city. */
-    .band {
-      position: relative;
-      height: 55vh;
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .band-inner {
-      position: absolute;
-      inset: -10% 0;
-      will-change: transform;
-    }
-
-    .band-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @media (max-width: 767px) {
-      .band { height: 34vh; }
+    .quote-card cite strong {
+      display: block;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.875rem;
+      margin-bottom: 0.125rem;
     }
 
     /* ============ FAQ ============ */
-    .faq-list { margin-top: 2.5rem; max-width: 46rem; }
+    .faq-list { margin-top: 3rem; border-top: 1px solid var(--line); }
 
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-item { border-bottom: 1px solid var(--line); }
 
     .faq-item summary {
-      list-style: none;
+      font-family: var(--serif);
+      font-size: clamp(1.0625rem, 2vw, 1.3125rem);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      padding: 1.5rem 2.5rem 1.5rem 0;
       cursor: pointer;
-      padding: 1.25rem 2.25rem 1.25rem 0;
-      font-weight: 700;
-      font-size: 1.05rem;
+      list-style: none;
       position: relative;
+      transition: color 0.15s ease;
     }
 
     .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { color: var(--gold); }
 
     .faq-item summary::after {
       content: "+";
       position: absolute;
-      right: 0.25rem;
-      top: 50%;
+      right: 0; top: 50%;
       transform: translateY(-50%);
+      font-family: var(--sans);
+      font-size: 1.375rem;
       color: var(--gold);
-      font-size: 1.5rem;
-      font-weight: 400;
       transition: transform 0.2s ease;
     }
 
-    .faq-item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+    .faq-item[open] summary::after { content: "−"; }
 
-    .faq-item .answer {
+    /* Some engines fail to hide the content of a closed <details>, which drops
+       the answer text straight on top of the next question. Hide it explicitly. */
+    .faq-item:not([open]) .answer { display: none; }
+
+    .answer {
       color: var(--gray);
-      padding: 0 0 1.5rem;
-      font-size: 0.98rem;
-      max-width: 42rem;
+      font-size: 0.9375rem;
+      max-width: var(--measure);
+      padding-bottom: 1.75rem;
     }
 
     /* ============ FOOTER CTA ============ */
     .footer-cta {
-      background:
-        radial-gradient(ellipse 70% 80% at 50% 100%, rgba(201, 168, 76, 0.1), transparent),
-        var(--black);
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 5rem 0;
       position: relative;
-      overflow: hidden;
+      text-align: center;
+      padding: 0;
+      /* Rounded block, not edge-to-edge: keep a gutter at every width. */
+      width: calc(100% - 3rem);
+      max-width: var(--max);
+      margin: 7rem auto 0;
     }
 
-    /* Louisville behind the form, held far back so the copy and labels
-       keep their contrast; the scrim re-adds the gold floor glow above it */
+    .footer-cta > .container {
+      position: relative;
+      z-index: 1;
+      padding: clamp(4rem, 9vw, 7rem) 1.5rem;
+    }
+
     .cta-bg {
       position: absolute;
       inset: 0;
+      border-radius: var(--r-block);
+      overflow: hidden;
+      border: 1px solid var(--line-gold);
     }
 
-    .cta-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .cta-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
 
+    /* Scrim only needs to protect the text — at the old strength the skyline
+       was invisible and the block read as flat black. */
     .cta-bg::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 70% 80% at 50% 100%, rgba(201, 168, 76, 0.14), transparent),
-        linear-gradient(180deg,
-          rgba(10, 10, 10, 0.95) 0%,
-          rgba(10, 10, 10, 0.88) 45%,
-          rgba(10, 10, 10, 0.93) 100%);
+      background: linear-gradient(to bottom, rgba(10,10,10,0.55), rgba(10,10,10,0.82));
     }
 
-    .footer-cta .container { position: relative; }
+    .footer-cta h2 { max-width: 18ch; margin-left: auto; margin-right: auto; }
 
-    .footer-cta h2 { max-width: 34rem; margin-left: auto; margin-right: auto; }
-
-    .footer-cta .urgency {
+    .urgency {
       color: var(--gray);
-      max-width: 32rem;
-      margin: 0.75rem auto 2rem;
-      font-size: 1.05rem;
+      /* Centred text punishes long lines even harder — keep it tight. */
+      max-width: 33rem;
+      margin: 0 auto;
+      font-size: 0.9375rem;
     }
 
-    .footer-cta .urgency strong { color: var(--gold); }
+    .urgency strong { color: var(--white); font-weight: 700; }
 
-    /* Discovery form */
     .discovery-form {
-      max-width: 26rem;
-      margin: 0 auto 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.375rem;
+      max-width: 26rem;
+      margin: 3rem auto 0;
       text-align: left;
     }
 
     .discovery-form label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gray);
+      color: var(--gray-dim);
+      margin-top: 0.75rem;
     }
 
-    .discovery-form input[type="text"],
-    .discovery-form input[type="email"],
-    .discovery-form input[type="tel"] {
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.85rem 1rem;
+    .discovery-form input {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      padding: 0.9375rem 1.25rem;
       color: var(--white);
+      font-family: var(--sans);
+      /* Must stay >=16px: iOS auto-zooms the page on focus below that. */
       font-size: 1rem;
-      font-family: inherit;
+      transition: border-color 0.15s ease;
     }
 
-    .discovery-form input:focus {
-      outline: 2px solid var(--gold);
-      outline-offset: 0;
-      border-color: var(--gold);
-    }
-
-    .discovery-form .btn { margin-top: 0.5rem; }
+    .discovery-form input::placeholder { color: var(--gray-dim); }
+    .discovery-form input:focus { outline: none; border-color: var(--gold); }
+    .discovery-form button { margin-top: 1.5rem; }
 
     .or-divider {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--gray-dim);
-      font-size: 0.85rem;
-      margin: 1.25rem 0;
+      margin: 2rem 0 1rem;
     }
 
     /* ============ FOOTER ============ */
     .footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
+      border-top: 1px solid var(--line);
+      margin-top: 7rem;
+      padding: 3rem 0;
     }
 
     .footer-inner {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.5rem;
       align-items: center;
       text-align: center;
     }
 
-    .footer p { color: var(--gray-dim); font-size: 0.85rem; }
-    .footer .footer-brand { color: var(--gray); font-weight: 700; letter-spacing: 0.05em; }
-    .footer .footer-brand span { color: var(--gold); }
+    .footer p { color: var(--gray-dim); font-size: 0.8125rem; }
 
-    /* ============ RESPONSIVE: TABLET+ ============ */
-    @media (min-width: 768px) {
-      section { padding: 6rem 0; }
+    .footer-brand {
+      font-family: var(--sans);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--white) !important;
+      font-size: 0.875rem !important;
+    }
 
-      .nav-links { display: flex; }
+    .footer-brand span { color: var(--gold); }
+
+    /* ============ REVEAL ============ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition-delay: var(--reveal-delay, 0s);
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============ RESPONSIVE ============ */
+
+    /* ---- Phones ---- */
+    @media (max-width: 699px) {
+      /* 7rem of air between sections reads as broken on a 375px screen. */
+      section { padding: 4.25rem 0; }
+      .container { padding: 0 1.25rem; }
+
+      .eyebrow { margin-bottom: 1.25rem; }
+
+      /* Reclaim horizontal space from the 01/02/03 gutter. */
+      .pain-card { gap: 0 1rem; padding: 1.5rem 0; }
+      .num { padding-top: 0.3rem; }
+
+      .tier { padding: 2rem 0; }
+      .tier-outcome { margin-bottom: 1.25rem; }
+      .tier ul { margin-bottom: 1.5rem; }
+
+      /* Fine print was 13px — lift it to a readable floor. */
+      .hero-note, .footer p, .quote-card cite { font-size: 0.875rem; }
+
+      .scene, .split .scene { margin: 2rem 0; }
+      .about-grid, .split { gap: 2rem; margin-top: 2rem; }
+
+      .footer-cta { width: calc(100% - 2rem); margin-top: 4.25rem; }
+      .footer { margin-top: 4.25rem; }
+
+      .faq-item summary { padding: 1.25rem 2.25rem 1.25rem 0; }
+
+      /* Hero CTAs stack full-width rather than splitting awkwardly. */
+      .hero-ctas .btn { width: 100%; max-width: 20rem; }
+    }
+
+    @media (min-width: 700px) {
+      .card-grid { gap: 0; }
+      .split { grid-template-columns: 1fr 1fr; gap: 4rem; }
+      .quote-grid { grid-template-columns: 1fr 1fr; gap: 0 3.5rem; }
+      .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+    }
+
+    @media (min-width: 900px) {
       .nav-toggle { display: none; }
+      .nav-links { display: flex; }
       .nav-mobile { display: none !important; }
 
-      .card-grid { grid-template-columns: repeat(3, 1fr); }
-      .tier-grid { grid-template-columns: repeat(3, 1fr); }
-      .steps { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
-      .quote-grid { grid-template-columns: repeat(2, 1fr); }
+      .tier-grid { grid-template-columns: repeat(3, 1fr); gap: 0 3rem; }
+      .tier { padding: 3rem 0; }
 
-      .about-grid {
-        grid-template-columns: minmax(280px, 400px) 1fr;
-        gap: 3rem;
-      }
+      .steps { grid-template-columns: repeat(3, 1fr); gap: 0 3rem; }
+
+      .about-grid { grid-template-columns: minmax(300px, 420px) 1fr; gap: 4rem; }
     }
   </style>
 </head>
-<body>
 
-  <div class="scroll-progress" aria-hidden="true"></div>
+<body>
+<!-- Decorative floating phoenix field. Purely ornamental: aria-hidden so screen
+     readers skip it, pointer-events:none so it never blocks interaction. -->
+<div class="phoenix-field" aria-hidden="true">
+  <span class="phoenix phoenix-1"></span>
+  <span class="phoenix phoenix-2"></span>
+  <span class="phoenix phoenix-3"></span>
+  <span class="phoenix phoenix-4"></span>
+  <span class="phoenix phoenix-5"></span>
+  <span class="phoenix phoenix-6"></span>
+</div>
+
+<div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- ============ NAV ============ -->
   <header class="nav">
@@ -946,8 +924,6 @@
 
     <!-- ============ 1. HERO ============ -->
     <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-scrim" aria-hidden="true"></div>
       <canvas id="heroCanvas" aria-hidden="true"></canvas>
       <div class="container">
         <h1>Your competitors are using AI.<br><span class="accent">You're about to use it better.</span></h1>
@@ -958,7 +934,6 @@
         </div>
         <p class="hero-note">No pitch deck. No jargon. No obligation. Just a straight answer on whether AI can help your business — and if the answer is no, we'll tell you that too.</p>
       </div>
-      <div class="scroll-cue" aria-hidden="true"><span></span></div>
     </section>
 
     <!-- ============ 2. PROBLEM ============ -->
@@ -967,26 +942,28 @@
         <span class="eyebrow">The Problem</span>
         <h2>You know AI matters. Nobody's made it make sense.</h2>
         <p class="section-intro">If you run a real business — crews in the field, chairs to fill, listings to close — here's what you're up against:</p>
-        <figure class="scene scene-wide">
-          <div class="scene-inner" data-plx="0.05">
-            <img src="assets/problem.webp" alt="Cluttered desk late at night: invoices stacked under a brass lamp and a phone showing a missed call at 2:37" width="1600" height="893" loading="lazy" decoding="async">
-          </div>
-        </figure>
-        <div class="card-grid">
-          <div class="pain-card">
-            <span class="num">01</span>
-            <h3>You're losing hours to work a machine should do</h3>
-            <p>Missed calls, manual follow-ups, scheduling back-and-forth, invoices typed by hand. Every one of those is revenue walking out the door while you do admin.</p>
-          </div>
-          <div class="pain-card">
-            <span class="num">02</span>
-            <h3>Every "AI expert" is selling you something</h3>
-            <p>Software vendors push their tool. Agencies push retainers before they know your business. Nobody starts with the question that matters: what would actually move <em>your</em> numbers?</p>
-          </div>
-          <div class="pain-card">
-            <span class="num">03</span>
-            <h3>Enterprise AI prices weren't built for you</h3>
-            <p>The consultants who know this stuff quote five figures and six-month timelines. So businesses like yours get left out of the biggest shift since the internet. That's the gap we exist to close.</p>
+        <div class="split">
+          <figure class="scene">
+            <div class="scene-inner" data-plx="0.05">
+              <img src="assets/problem.webp" alt="Four business owners gathered around a laptop and printed plans in a brick-and-concrete loft at night" width="1400" height="1876" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <div class="card-grid">
+            <div class="pain-card">
+              <span class="num">01</span>
+              <h3>You're losing hours to work a machine should do</h3>
+              <p>Missed calls, manual follow-ups, scheduling back-and-forth, invoices typed by hand. Every one of those is revenue walking out the door while you do admin.</p>
+            </div>
+            <div class="pain-card">
+              <span class="num">02</span>
+              <h3>Every "AI expert" is selling you something</h3>
+              <p>Software vendors push their tool. Agencies push retainers before they know your business. Nobody starts with the question that matters: what would actually move <em>your</em> numbers?</p>
+            </div>
+            <div class="pain-card">
+              <span class="num">03</span>
+              <h3>Enterprise AI prices weren't built for you</h3>
+              <p>The consultants who know this stuff quote five figures and six-month timelines. So businesses like yours get left out of the biggest shift since the internet. That's the gap we exist to close.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1080,8 +1057,8 @@
         <h2>Meet Chris Conley</h2>
         <div class="about-grid">
           <figure class="scene scene-about">
-            <div class="scene-inner" data-plx="0.04">
-              <img src="assets/about.webp" alt="Chris Conley seated at a desk in warm lamplight" width="1400" height="1045" loading="lazy" decoding="async">
+            <div class="scene-inner" data-plx="0.02">
+              <img src="assets/about.webp" alt="Chris Conley standing on a sidewalk beside a brick wall with a painted mural" width="1200" height="1608" loading="lazy" decoding="async">
             </div>
           </figure>
           <div class="about-copy">
@@ -1220,14 +1197,17 @@
     </div>
   </footer>
 
-  <script>
+<script>
     // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
     const mobileMenu = document.getElementById('navMobile');
 
+    const navEl = document.querySelector('.nav');
+
     toggle.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.toggle('open');
       toggle.setAttribute('aria-expanded', isOpen);
+      navEl.classList.toggle('nav-open', isOpen);
     });
 
     // Close mobile menu after tapping a link
@@ -1235,6 +1215,7 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
+        navEl.classList.remove('nav-open');
       });
     });
 
@@ -1297,7 +1278,13 @@
       function frame() {
         const w = canvas.parentElement.clientWidth;
         const h = canvas.parentElement.clientHeight;
-        ctx.clearRect(0, 0, w, h);
+        // Clear the WHOLE bitmap in device space. Clearing only the CSS box left
+        // any taller region uncleared, so particle trails piled up there and
+        // built into solid blobs.
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
 
         const LINK_DIST = 130;
         for (let i = 0; i < particles.length; i++) {
@@ -1342,6 +1329,11 @@
       sizeCanvas();
       heroObserver.observe(canvas.parentElement);
       window.addEventListener('resize', sizeCanvas);
+      // The hero can change height without the window resizing (font load,
+      // reflow), which left the bitmap the wrong size. Track the box itself.
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(sizeCanvas).observe(canvas.parentElement);
+      }
     }
 
     // ============ SCROLL MOTION ENGINE ============
@@ -1350,10 +1342,8 @@
     // Parallax layers register via [data-plx]; reads are batched before writes.
     (function () {
       const hero = document.querySelector('.hero');
-      const heroBg = document.querySelector('.hero-bg');
       const navEl = document.querySelector('.nav');
       const progressEl = document.querySelector('.scroll-progress');
-      const cueEl = document.querySelector('.scroll-cue');
       const layers = [...document.querySelectorAll('[data-plx]')];
       const desktop = window.matchMedia('(min-width: 768px)');
       let ticking = false;
@@ -1382,11 +1372,6 @@
           progressEl.style.transform = 'scaleX(' + (scrollable > 0 ? Math.min(y / scrollable, 1) : 0) + ')';
         }
         if (navEl) navEl.classList.toggle('nav-scrolled', y > heroH - 68);
-        if (cueEl) cueEl.classList.toggle('cue-hidden', y > 100);
-        if (!reducedMotion && desktop.matches && heroBg) {
-          const drift = -Math.min(y * 0.22, heroH * 0.16);
-          heroBg.style.transform = 'translate3d(0,' + drift.toFixed(1) + 'px,0)';
-        }
         for (const [layer, offset] of moves) {
           layer.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
         }
