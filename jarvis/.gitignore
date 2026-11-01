@@ -1,0 +1,13 @@
+node_modules/
+out/
+dist/
+release/
+*.log
+.env
+.env.local
+.env.*.local
+wakeword/.venv/
+wakeword/__pycache__/
+wakeword/models/
+coverage/
+test-artifacts/

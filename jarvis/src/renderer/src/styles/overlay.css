@@ -1,0 +1,54 @@
+html, body, #root { margin: 0; padding: 0; width: 100%; height: 100%; background: transparent; overflow: hidden; }
+.overlay-body { font-family: 'Segoe UI', system-ui, sans-serif; user-select: none; color: #f1ece0; }
+.overlay { position: relative; width: 100%; height: 100%; --amber: #f59e0b; }
+.hit { pointer-events: auto; }
+
+.banner { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); font-size: 10px; letter-spacing: .08em; font-weight: 700;
+  background: #f59e0bdd; color: #1b1205; padding: 2px 8px; border-radius: 4px; white-space: nowrap; z-index: 5; }
+
+.stage { position: absolute; left: 50%; top: 8%; width: 82%; height: 66%; transform: translateX(-50%); cursor: pointer;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s; transform-origin: 50% 100%; outline: none; }
+.stage:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 12px; }
+.overlay.compact .stage { transform: translateX(-50%) translateY(18%) scale(.46); }
+.body { position: relative; width: 100%; height: 100%; will-change: transform; }
+.character, .placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 2; pointer-events: none; }
+.glow { position: absolute; inset: 14% 12%; border-radius: 50%; z-index: 0; will-change: opacity, transform;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--violet) 70%, transparent), color-mix(in srgb, var(--gold) 18%, transparent) 60%, transparent 75%); filter: blur(10px); }
+.trails { position: absolute; inset: -6% -10%; width: 120%; height: 112%; z-index: 1; overflow: visible; }
+.trail { fill: none; stroke-linecap: round; stroke-dasharray: 60 22 8 22; }
+.trail.gold { stroke: var(--gold); }
+.trail.violet { stroke: var(--violet); }
+
+.accent-dim .glow, .accent-dim .trail { filter: grayscale(.85) brightness(.6); }
+.accent-dim .character, .accent-dim .placeholder { filter: brightness(.7) saturate(.5); }
+.accent-amber .glow { background: radial-gradient(closest-side, #f59e0b88, transparent 72%); }
+.accent-amber .trail { stroke: var(--amber); }
+
+.status { position: absolute; left: 50%; bottom: 23%; transform: translateX(-50%); max-width: 94%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #0d0d12e6; border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  box-shadow: 0 2px 10px #0008; transition: opacity .3s; }
+.status .icon { color: var(--violet); margin-right: 6px; }
+.accent-amber .status { border-color: var(--amber); }
+.accent-amber .status .icon { color: var(--amber); }
+.mute-pill { margin-left: 6px; font-size: 10px; padding: 1px 5px; border-radius: 4px; background: #3a3a44; }
+.overlay.compact .status { bottom: 16%; font-size: 11px; }
+
+.wake-chip { position: absolute; left: 50%; bottom: 16.5%; transform: translateX(-50%); font-size: 10px; white-space: nowrap; color: #d8ccff;
+  background: #1a1430d9; border: 1px solid #8b5cf680; padding: 1px 8px; border-radius: 999px; pointer-events: none; }
+.overlay.compact .wake-chip { bottom: 9%; }
+
+.controls { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); display: flex; gap: 4px; opacity: 0; transition: opacity .25s; }
+.overlay.expanded:hover .controls, .controls:focus-within, .overlay[data-state='listening'] .controls, .overlay[data-state='speaking'] .controls, .overlay[data-state='thinking'] .controls { opacity: 1; }
+.controls button { font: inherit; font-size: 11px; font-weight: 600; color: #f1ece0; background: #15151bf0; border: 1px solid #d4a64a80; border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+.controls button:hover { border-color: var(--gold); background: #1f1f28; }
+.controls button:focus-visible { outline: 2px solid var(--violet); }
+.controls button:disabled { opacity: .5; cursor: not-allowed; }
+.overlay.compact .controls { display: none; }
+
+.drag { position: absolute; top: 4%; right: 4%; width: 22px; height: 22px; display: grid; place-items: center; font-size: 14px; color: #d4a64aaa;
+  background: #0d0d12aa; border-radius: 6px; cursor: grab; opacity: 0; transition: opacity .2s; }
+.overlay:hover .drag, .drag:focus-visible { opacity: 1; }
+.drag:active { cursor: grabbing; }
+
+.overlay.reduced .stage { transition: none; }
+@media (prefers-reduced-motion: reduce) { .stage, .controls, .status { transition: none; } }

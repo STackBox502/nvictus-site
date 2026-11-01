@@ -1,0 +1,36 @@
+appId: com.nvictus.jarvis
+productName: Jarvis
+copyright: Copyright © 2026 NVICTUS Enterprise LLC
+directories:
+  output: release
+  buildResources: build
+files:
+  - out/**/*
+  - package.json
+  - "!**/.env*"
+  - "!**/*.map"
+extraResources:
+  - from: wakeword/helper.py
+    to: wakeword/helper.py
+  - from: wakeword/requirements.txt
+    to: wakeword/requirements.txt
+  - from: wakeword/README.md
+    to: wakeword/README.md
+asar: true
+win:
+  target:
+    - portable
+    - nsis
+  artifactName: ${productName}-${version}-${arch}-${os}.${ext}
+  # Unsigned build: Windows SmartScreen may warn. Code signing needs a certificate (not provided).
+  signAndEditExecutable: false
+portable:
+  artifactName: ${productName}-${version}-portable.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+  artifactName: ${productName}-${version}-setup.${ext}
+publish: null
