@@ -6,7 +6,7 @@ html, body, #root { margin: 0; padding: 0; width: 100%; height: 100%; background
 .banner { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); font-size: 10px; letter-spacing: .08em; font-weight: 700;
   background: #f59e0bdd; color: #1b1205; padding: 2px 8px; border-radius: 4px; white-space: nowrap; z-index: 5; }
 
-.stage { position: absolute; left: 50%; top: 8%; width: 82%; height: 66%; transform: translateX(-50%); cursor: pointer;
+.stage { position: absolute; left: 50%; top: 7%; width: 80%; height: 60%; transform: translateX(-50%); cursor: pointer;
   transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s; transform-origin: 50% 100%; outline: none; }
 .stage:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 12px; }
 .overlay.compact .stage { transform: translateX(-50%) translateY(18%) scale(.46); }
@@ -24,7 +24,7 @@ html, body, #root { margin: 0; padding: 0; width: 100%; height: 100%; background
 .accent-amber .glow { background: radial-gradient(closest-side, #f59e0b88, transparent 72%); }
 .accent-amber .trail { stroke: var(--amber); }
 
-.status { position: absolute; left: 50%; bottom: 23%; transform: translateX(-50%); max-width: 94%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.status { position: absolute; left: 50%; bottom: 20.5%; transform: translateX(-50%); max-width: 94%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #0d0d12e6; border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
   box-shadow: 0 2px 10px #0008; transition: opacity .3s; }
 .status .icon { color: var(--violet); margin-right: 6px; }
@@ -33,7 +33,7 @@ html, body, #root { margin: 0; padding: 0; width: 100%; height: 100%; background
 .mute-pill { margin-left: 6px; font-size: 10px; padding: 1px 5px; border-radius: 4px; background: #3a3a44; }
 .overlay.compact .status { bottom: 16%; font-size: 11px; }
 
-.wake-chip { position: absolute; left: 50%; bottom: 16.5%; transform: translateX(-50%); font-size: 10px; white-space: nowrap; color: #d8ccff;
+.wake-chip { position: absolute; left: 50%; bottom: 13.5%; transform: translateX(-50%); font-size: 10px; white-space: nowrap; color: #d8ccff;
   background: #1a1430d9; border: 1px solid #8b5cf680; padding: 1px 8px; border-radius: 999px; pointer-events: none; }
 .overlay.compact .wake-chip { bottom: 9%; }
 

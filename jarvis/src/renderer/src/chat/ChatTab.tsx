@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Settings } from '../../../shared/settings';
 import type { AppSnapshot, ChatMessage } from '../../../shared/types';
-import { call, errText } from '../hooks';
+import { call, errText, prettyAccel } from '../hooks';
 
 /** Renders text safely (React text nodes only); fenced code becomes <pre>. No HTML from the model is ever injected. */
 function RichText({ text }: { text: string }) {
@@ -151,7 +151,7 @@ export function ChatTab({ snap, settings }: { snap: AppSnapshot; settings: Setti
         {sendErr && <div className="err">{sendErr}</div>}
         <div className="composer-foot">
           <span>
-            Hotkeys: Talk <kbd>{snap.shortcuts.talk.accelerator || 'none'}</kbd>{!snap.shortcuts.talk.registered && ' (unavailable, use the tray)'} · Stop <kbd>{snap.shortcuts.stop.accelerator || 'none'}</kbd>
+            Hotkeys: Talk <kbd>{prettyAccel(snap.shortcuts.talk.accelerator) || 'none'}</kbd>{!snap.shortcuts.talk.registered && ' (unavailable, use the tray)'} · Stop <kbd>{prettyAccel(snap.shortcuts.stop.accelerator) || 'none'}</kbd>
             {!snap.shortcuts.stop.registered && ' (unavailable)'}
           </span>
           <span className="spacer" />

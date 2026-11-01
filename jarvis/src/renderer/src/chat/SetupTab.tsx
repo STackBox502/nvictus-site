@@ -1,6 +1,6 @@
 import type { Settings } from '../../../shared/settings';
 import type { AppSnapshot } from '../../../shared/types';
-import { call, patchSettings } from '../hooks';
+import { call, patchSettings, prettyAccel } from '../hooks';
 import { CharacterImport } from './CharacterImport';
 import { AudioDevices, KeyRow, ModelPicker, VoicePicker } from './pickers';
 import { ActionButton, Card, ExtLink, FieldRow, Pill } from './ui';
@@ -68,7 +68,7 @@ export function SetupTab({ snap, settings, goChat }: { snap: AppSnapshot; settin
           }}
         />
         <p className="muted">
-          Global hotkey <kbd>{snap.shortcuts.talk.accelerator}</kbd> {snap.shortcuts.talk.registered ? <Pill tone="ok">registered</Pill> : <Pill tone="bad">taken by another app, use the tray</Pill>} works while other apps have focus.
+          Global hotkey <kbd>{prettyAccel(snap.shortcuts.talk.accelerator)}</kbd> {snap.shortcuts.talk.registered ? <Pill tone="ok">registered</Pill> : <Pill tone="bad">taken by another app, use the tray</Pill>} works while other apps have focus.
           Electron hotkeys can't detect key release, so the hotkey is press to start and press again to send. True hold-to-talk works on the on-screen button.
         </p>
         {settings.activation.mode === 'handsfree' && (

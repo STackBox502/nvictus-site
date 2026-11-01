@@ -59,6 +59,8 @@ async function main(): Promise<void> {
 
   const crypto: SecretCrypto = {
     available: async () => {
+      // On Linux without a keyring Electron falls back to a hardcoded key ("basic_text"): not real encryption.
+      if (process.platform === 'linux' && safeStorage.getSelectedStorageBackend?.() === 'basic_text') return false;
       try {
         if (typeof safeStorage.isAsyncEncryptionAvailable === 'function') return await safeStorage.isAsyncEncryptionAvailable();
       } catch {

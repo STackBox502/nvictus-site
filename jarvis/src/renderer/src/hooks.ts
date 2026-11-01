@@ -3,6 +3,11 @@ import type { InvokeChannel } from '../../shared/channels';
 import type { Settings } from '../../shared/settings';
 import type { AppSnapshot, CharacterAsset } from '../../shared/types';
 
+/** Friendly accelerator text for Windows users. */
+export function prettyAccel(acc: string): string {
+  return acc.replace(/CommandOrControl|CmdOrCtrl/g, 'Ctrl').replace(/\+/g, ' + ');
+}
+
 export function call<T = unknown>(channel: InvokeChannel, payload?: unknown): Promise<T> {
   return window.jarvis.invoke(channel, payload) as Promise<T>;
 }

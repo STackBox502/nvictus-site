@@ -11,3 +11,4 @@ wakeword/__pycache__/
 wakeword/models/
 coverage/
 test-artifacts/
+out-shots/

@@ -85,7 +85,7 @@ export function isBusy(state: ConvState): boolean {
 export const STATE_LABELS: Record<ConvState, string> = {
   unconfigured: 'Setup needed',
   idle: 'Ready',
-  armed: 'Listening for wake word (local only)',
+  armed: 'Hands-free armed',
   listening: 'Listening…',
   transcribing: 'Transcribing…',
   thinking: 'Thinking…',

@@ -1,0 +1,23 @@
+# Jarvis local wake-word helper. Exact versions verified together on 2026-11-01
+# (Linux, Python 3.13: model download, self-test, and stdin protocol passed).
+# Windows wheels exist for these versions on Python 3.11-3.13. Re-verify on your PC with --self-test.
+# Install:  python -m pip install --require-virtualenv -r requirements.txt
+openwakeword==0.6.0
+onnxruntime==1.31.1
+numpy==2.5.4
+scipy==1.18.1
+scikit-learn==1.9.1
+tqdm==4.70.1
+requests==2.34.2
+# transitive pins
+certifi==2026.10.23
+charset-normalizer==3.5.2
+cloudpickle==3.1.2
+flatbuffers==25.12.19
+idna==3.20
+joblib==1.6.0
+narwhals==2.28.0
+packaging==26.3
+protobuf==7.36.2
+threadpoolctl==3.7.0
+urllib3==2.8.0

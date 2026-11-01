@@ -1,0 +1,122 @@
+[
+  {
+    "ok": true,
+    "name": "both windows load from app://jarvis",
+    "detail": "app://jarvis/chat.html | app://jarvis/overlay.html"
+  },
+  {
+    "ok": true,
+    "name": "renderer has no Node globals",
+    "detail": "{\"require\":\"undefined\",\"process\":\"undefined\",\"module\":\"undefined\",\"bridgeKeys\":\"invoke,on,send,sendFrame\",\"badChannel\":\"rejected\",\"badPayload\":\"rejected\",\"windowOpen\":\"null\",\"fetch\":\"blocked\"}"
+  },
+  {
+    "ok": true,
+    "name": "preload bridge exposes only the narrow API",
+    "detail": "invoke,on,send,sendFrame"
+  },
+  {
+    "ok": true,
+    "name": "IPC rejects unknown channels and extra payload keys",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "window.open is denied",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "renderer cannot reach provider APIs directly (CSP connect-src)",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "starts idle in demo mode with mic off",
+    "detail": "state=idle mic=false"
+  },
+  {
+    "ok": true,
+    "name": "microphone is off at launch",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "real wake-word helper starts and loads hey_jarvis",
+    "detail": "ready: Local model loaded (hey_jarvis)"
+  },
+  {
+    "ok": true,
+    "name": "demo turn reaches \"speaking\" (playback actually started in the overlay)",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "reply completes and returns to idle after playback drains",
+    "detail": "Demo mode. I received: \"Hello from the smoke test\". This rep"
+  },
+  {
+    "ok": true,
+    "name": "Stop interrupts speech and marks the reply interrupted",
+    "detail": "heard=\"Demo mode.\""
+  },
+  {
+    "ok": true,
+    "name": "mic capture starts (audio-only permission granted by app handler)",
+    "detail": "state=listening"
+  },
+  {
+    "ok": true,
+    "name": "captured audio frames reached STT and produced a voice turn",
+    "detail": "This is a demo transcript, no audio left this computer."
+  },
+  {
+    "ok": true,
+    "name": "mic released after the turn (not armed)",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "hands-free arms: mic on, state armed (local wake detection only)",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "disarm releases the microphone",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "mute: state muted, mic off",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "visual preview cycles states (screenshots captured)",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "settings reject out-of-range values",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "spoken/typed \"remember that\" persists a memory",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "no credential file created when no keys are entered",
+    "detail": "Cache,Code Cache,Crashpad,DIPS,DIPS-wal,DawnGraphiteCache,DawnWebGPUCache,DevToolsActivePort,Dictionaries,Extension State,GPUCache,GPUPersistentCache,Local State,Local Storage,Network Persistent State,Preferences,Session Storage,Shared Dictionary,SingletonCookie,SingletonLock,SingletonSocket,Trust Tokens,Trust Tokens-journal,blob_storage,declarative_performance_observer.db,declarative_performance_observer.db-journal,logs,memories.json,settings.json,usage.json"
+  },
+  {
+    "ok": true,
+    "name": "no renderer console errors (incl. CSP violations)",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "name": "Quit stops the wake-word helper process",
+    "detail": "before=[3353] after=[]"
+  }
+]
