@@ -1,0 +1,65 @@
+{
+  "package": "JARVIS_Codex_Build_Pack",
+  "version": "1.0",
+  "prepared_date": "2026-11-01",
+  "kind": "Instructions and character asset; no application source or secrets",
+  "phase_order": [
+    "Voice baseline",
+    "Optional controlled camera and screen vision"
+  ],
+  "character": {
+    "width": 1254,
+    "height": 1254,
+    "bit_depth": 8,
+    "color_type": 6,
+    "alpha_channel": true,
+    "origin": "Original AI-generated project character"
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 1761,
+      "sha256": "6e6d543b13be23fec89b6cf19ec6482a23239d55aaf3eba943b72340527fd970"
+    },
+    {
+      "path": "assets/ASSET_NOTES.md",
+      "bytes": 1109,
+      "sha256": "45ad839b638788f499dc3fe3328d2da2f544d4ac4930101fc0b054b223704dd9"
+    },
+    {
+      "path": "assets/jarvis-character.png",
+      "bytes": 1407546,
+      "sha256": "fcc400840dfd4ddd7c7e6713d44984f755c99a64313e398132ef0c561991158d"
+    },
+    {
+      "path": "BUILD_AND_COMPARISON_CHECKLIST.md",
+      "bytes": 3100,
+      "sha256": "6ebacc6b08b918ac5ac51f100b4f204b729b29217af89cac87784b8fa76b9588"
+    },
+    {
+      "path": "CODEX_START_PROMPT.txt",
+      "bytes": 2940,
+      "sha256": "2dd6a7bba81e374f3f94815afd198a94a31867860002f431e36b5705cd6ba61d"
+    },
+    {
+      "path": "README_START_HERE.md",
+      "bytes": 4254,
+      "sha256": "cd3d6270dc43ad57f501969d1cfbf2564c09721c59aba7517dc4ae9d9e67d79e"
+    },
+    {
+      "path": "reference/VIDEO_FINDINGS.md",
+      "bytes": 2537,
+      "sha256": "03a52e2bb021864232fdc82e55629d25f11da2bfd17e67ddaea474f7d8b1e6f5"
+    },
+    {
+      "path": "specs/01_VOICE_COMPANION_SPEC.md",
+      "bytes": 31188,
+      "sha256": "8bcc0162f95e113132a018d028458b63177d6931a657a46cd5b4e5fd49937ef7"
+    },
+    {
+      "path": "specs/02_VISION_UPGRADE_SPEC.md",
+      "bytes": 18619,
+      "sha256": "50c12828057468be3625f06b01212ec343fe259b257481e9fd3941686bbc5f73"
+    }
+  ]
+}

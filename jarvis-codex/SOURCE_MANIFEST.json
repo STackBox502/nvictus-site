@@ -1,0 +1,347 @@
+{
+  "date": "2026-11-01",
+  "version": "0.1.1",
+  "description": "Exact allowlisted source snapshot; credentials and user data excluded",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 1761,
+      "sha256": "6e6d543b13be23fec89b6cf19ec6482a23239d55aaf3eba943b72340527fd970"
+    },
+    {
+      "path": "app/.gitignore",
+      "bytes": 168,
+      "sha256": "ac0c6861b2455faf81ffd4a353b4cbea9ba04e14d747e5e0891f1daa2faf7b25"
+    },
+    {
+      "path": "app/ARCHITECTURE.md",
+      "bytes": 6726,
+      "sha256": "0ff671eda4905abf50d245be7864badc0eb11810498cb49a101fa5fdc3f94695"
+    },
+    {
+      "path": "app/build/icon.ico",
+      "bytes": 76429,
+      "sha256": "7ea69fcae83401306548afb4b83ee7e99ef3e1ae005b1bc29e2cafe6aa87258a"
+    },
+    {
+      "path": "app/CUSTOMIZATION.md",
+      "bytes": 2573,
+      "sha256": "4895d5fb524c6de624bf53f5bbcf8ea6f3a431246828230ebc0d4bf7a7a3dd52"
+    },
+    {
+      "path": "app/eslint.config.mjs",
+      "bytes": 1052,
+      "sha256": "2dda9ce21d1b00ca0f99103ff42dc4c3e5e5534eda9e6c056a1d0cd333a44fc1"
+    },
+    {
+      "path": "app/index.html",
+      "bytes": 548,
+      "sha256": "dd3f9dd508da2569161c66f987fe6f1c8508afe4431ca744be6492ad0f3980f0"
+    },
+    {
+      "path": "app/package-lock.json",
+      "bytes": 218310,
+      "sha256": "e24ed5160395d1016efa27435be331c2cacba1dfd8a56bd49474d3b1582687c3"
+    },
+    {
+      "path": "app/package.json",
+      "bytes": 2293,
+      "sha256": "820dc8efb2a2792dc8563fb21eda182b48a5a7be18f56e433c716ee66081c0c5"
+    },
+    {
+      "path": "app/PRIVACY.md",
+      "bytes": 3909,
+      "sha256": "5cc0b7668e7ea7218de94f5a2fe492cf1238ab5cc327a6378bcd0c0cf64abfee"
+    },
+    {
+      "path": "app/public/jarvis-character.png",
+      "bytes": 1407546,
+      "sha256": "fcc400840dfd4ddd7c7e6713d44984f755c99a64313e398132ef0c561991158d"
+    },
+    {
+      "path": "app/public/pcm-worklet.js",
+      "bytes": 1138,
+      "sha256": "56d28ec58fcadeb4a277431c733f0e7763f262311303b765703802da1c899e54"
+    },
+    {
+      "path": "app/README.md",
+      "bytes": 2303,
+      "sha256": "f80f4222bfea25d80d59a6cd40611730a41ab68dbde532c56702616ef5eb8bc8"
+    },
+    {
+      "path": "app/scripts/build.mjs",
+      "bytes": 986,
+      "sha256": "419daf291a20288502d78996e69bdb88c59a9f85baf42ef813ff43cc458312e0"
+    },
+    {
+      "path": "app/scripts/clipboard-smoke.mjs",
+      "bytes": 6355,
+      "sha256": "0fada17806fca0d521b6dba26fc019ae14cebae7d68daac7082dcc219121cdde"
+    },
+    {
+      "path": "app/scripts/dev.mjs",
+      "bytes": 469,
+      "sha256": "593bcc0261746681cb5e56cf7a36e7e31dd4b4e3ea89e5c05fe5e2cedd4e6a67"
+    },
+    {
+      "path": "app/scripts/diagnose-elevenlabs.mjs",
+      "bytes": 2771,
+      "sha256": "ab80caeec146533f48d9a5e658cb945179782471bd369c9ea27458149805daf0"
+    },
+    {
+      "path": "app/scripts/elevenlabs-onboard.mjs",
+      "bytes": 2998,
+      "sha256": "ce2f0467267d441e9f70a2ad0355c4180b5b1abb73f863ff17c3249305002969"
+    },
+    {
+      "path": "app/scripts/launch.mjs",
+      "bytes": 263,
+      "sha256": "7947724e0885fdf2951eb102d7204e3779a49cbf23fd29d8c8f15c739a05aa15"
+    },
+    {
+      "path": "app/scripts/package-audit.mjs",
+      "bytes": 2106,
+      "sha256": "7fafde3f7a6d8533dd431241d7c56db6b8c6a6ba768d295ce136dd3614e68e59"
+    },
+    {
+      "path": "app/scripts/package-smoke.mjs",
+      "bytes": 1542,
+      "sha256": "634f5eb4637bfa8b97183848966cf9e6cb92ca7ab16bd1caf454a48bf8ea53f8"
+    },
+    {
+      "path": "app/scripts/smoke.mjs",
+      "bytes": 9540,
+      "sha256": "e9ea46e427022765b8384ad5f60a8b36d46c8ef0a7bd48774a075d269b797c1c"
+    },
+    {
+      "path": "app/scripts/store-elevenlabs.mjs",
+      "bytes": 1263,
+      "sha256": "ef6fd66a6fb8147a36e8524e7e85c83626e93d5340167a6a82af4f804b4ea737"
+    },
+    {
+      "path": "app/scripts/test-elevenlabs-voice.mjs",
+      "bytes": 3508,
+      "sha256": "35ab6aee14c7d86ec47d20c1171082e6045b2511a9e00e90618e091fb3e4e53e"
+    },
+    {
+      "path": "app/SETUP_WINDOWS.md",
+      "bytes": 6487,
+      "sha256": "d4e10c591056cc984556695faea3889b9ed8f91e9257cac39150eb1b85fa47df"
+    },
+    {
+      "path": "app/src/core.ts",
+      "bytes": 3986,
+      "sha256": "58fc0be47ea2568d3f76c48f8f592eb0eed8c70c17b84bc9e787bafb82d7d5b4"
+    },
+    {
+      "path": "app/src/main/audio-output.ts",
+      "bytes": 2352,
+      "sha256": "8e67bf31b3db9336ee7d0f31a7655b18639d563d8b0ddeb8760bf1aa1b80f6d0"
+    },
+    {
+      "path": "app/src/main/controller.ts",
+      "bytes": 18429,
+      "sha256": "004b0d96bd0c3eb156898537d69cdd15dd0c0db0f5a93e32596021a7b9b3f176"
+    },
+    {
+      "path": "app/src/main/editing.ts",
+      "bytes": 1380,
+      "sha256": "ee2a7d22f97da313d4662c361312c2e74fee0343d448d7098f58dc030ac808da"
+    },
+    {
+      "path": "app/src/main/index.ts",
+      "bytes": 20908,
+      "sha256": "b750adb85f03051ec61dc1a6ec103c5199a6a0f9f8fbf81a4087014c11db996a"
+    },
+    {
+      "path": "app/src/main/providers.ts",
+      "bytes": 11133,
+      "sha256": "31304359a0e39d266aa044f6f17cf1a7c4ddb075ba6ce001af696cab53665b66"
+    },
+    {
+      "path": "app/src/main/storage.ts",
+      "bytes": 5212,
+      "sha256": "e4d377c848af1d14c57cbbca8feea61d599036414812e39aa0f8f18ba51ba0a1"
+    },
+    {
+      "path": "app/src/main/wake.ts",
+      "bytes": 2731,
+      "sha256": "e71f2bc25eaaba8152ff497bb13b6a6dbc76884930ece411912f9dc2a3b4693b"
+    },
+    {
+      "path": "app/src/preload.ts",
+      "bytes": 614,
+      "sha256": "b297bcf7d5252d3e49b7ab0198b3f6684a16aa1086367fcb99a28573f6441781"
+    },
+    {
+      "path": "app/src/renderer/audio.ts",
+      "bytes": 7142,
+      "sha256": "454be446479f33fe4c551665a0662353822b5fd72d2ebbd75d024831592f05ea"
+    },
+    {
+      "path": "app/src/renderer/main.tsx",
+      "bytes": 30463,
+      "sha256": "bad308d80f72c2de6a0497f2380965b16fa11807823c195676b84b260fb59ebd"
+    },
+    {
+      "path": "app/src/renderer/style.css",
+      "bytes": 14615,
+      "sha256": "0a0710adbb5121efbee4f4c10ce29a982aa8e102ed208cc054ef7b50b79acac8"
+    },
+    {
+      "path": "app/src/shared.ts",
+      "bytes": 8059,
+      "sha256": "cd77202e27067e6715debafd0272e85fddc4b176da87a8d4636176f0e4d9de67"
+    },
+    {
+      "path": "app/src/vite-env.d.ts",
+      "bytes": 39,
+      "sha256": "424faf9241dd699dda995b367ed36665732da1e6ec1f33b2fd40394488ecac92"
+    },
+    {
+      "path": "app/TEST_REPORT.md",
+      "bytes": 10505,
+      "sha256": "007db17358e3be41ea7f3a486514e775e4be3eee0731c08811472eba26c22ba9"
+    },
+    {
+      "path": "app/tests/audio-worklet.test.ts",
+      "bytes": 1034,
+      "sha256": "47e4cd4f8868bfb936f7fbcfa3e82ec66486b4526f8918811ed0cc1f8eeb0bf7"
+    },
+    {
+      "path": "app/tests/controller.test.ts",
+      "bytes": 5969,
+      "sha256": "3933b579f80957a73ccc5487f5a9febd95c80b158187cdc28665ac75715bf85d"
+    },
+    {
+      "path": "app/tests/core.test.ts",
+      "bytes": 4993,
+      "sha256": "b47f16a7b25de2ba5319bface1fd0a9a506cc8d4077998e85eec183eb8ecfb68"
+    },
+    {
+      "path": "app/tests/providers.test.ts",
+      "bytes": 4406,
+      "sha256": "3d6ef79787a6e3526bfcf0a43173871c669fdcba170ae1077864d314316ab93e"
+    },
+    {
+      "path": "app/tests/storage.test.ts",
+      "bytes": 3323,
+      "sha256": "6d16fa3b97236696fac6a3da2447605c463a2fb76c37ac55c819c42f677bc250"
+    },
+    {
+      "path": "app/tsconfig.json",
+      "bytes": 257,
+      "sha256": "e5a8bb8f80900260083e135933365155aa28e913786029b85e805daf735b8c34"
+    },
+    {
+      "path": "app/VISION_QUICKSTART.md",
+      "bytes": 480,
+      "sha256": "f132b0dffc0b514308935adac926f998b8b27bfb764aca1a639bf8b254dba179"
+    },
+    {
+      "path": "app/VISION_TEST_REPORT.md",
+      "bytes": 632,
+      "sha256": "4983ddf69b1a4afef666e269a93eb725889b0dcda36f78768e44562a767fc291"
+    },
+    {
+      "path": "app/VISUAL_ASSET_MANIFEST.json",
+      "bytes": 491,
+      "sha256": "6100503810d801e155180b85d816291ffe4fae2b35f6d3f915994b5416633c82"
+    },
+    {
+      "path": "app/wake/helper.py",
+      "bytes": 1047,
+      "sha256": "f5fbaeb0af85cb79b3b37a0951da2fdb489c08af6896a02578e259a38f2c4107"
+    },
+    {
+      "path": "app/wake/installed-requirements.txt",
+      "bytes": 350,
+      "sha256": "89b96f063eb888c66d995e8b69be0c7d4e2d8328aa7355cafa387a07aa140bb8"
+    },
+    {
+      "path": "app/wake/model-manifest.json",
+      "bytes": 775,
+      "sha256": "fedbcdade3e619230ba9dd7c88e92c645c4753befbe7f8284ee26fba2f551d72"
+    },
+    {
+      "path": "app/wake/README.md",
+      "bytes": 2785,
+      "sha256": "b1ddd0b42dcc80b2096ba70e6fe5235b1206b670cbb47d21d167cf6767931734"
+    },
+    {
+      "path": "app/wake/requirements.txt",
+      "bytes": 350,
+      "sha256": "89b96f063eb888c66d995e8b69be0c7d4e2d8328aa7355cafa387a07aa140bb8"
+    },
+    {
+      "path": "app/wake/setup.py",
+      "bytes": 2440,
+      "sha256": "943726bc730a281257cb2d7d3e516090b5f265e4fe1fa93b9576ad4332116ec9"
+    },
+    {
+      "path": "assets/ASSET_NOTES.md",
+      "bytes": 1109,
+      "sha256": "45ad839b638788f499dc3fe3328d2da2f544d4ac4930101fc0b054b223704dd9"
+    },
+    {
+      "path": "assets/jarvis-character.png",
+      "bytes": 1407546,
+      "sha256": "fcc400840dfd4ddd7c7e6713d44984f755c99a64313e398132ef0c561991158d"
+    },
+    {
+      "path": "BUILD_AND_COMPARISON_CHECKLIST.md",
+      "bytes": 5350,
+      "sha256": "f643d3ede1917a7295b9d8feb557933ea3b907ff4ed1185c6da52eed034b1a7e"
+    },
+    {
+      "path": "BUILD_PLAN.md",
+      "bytes": 3091,
+      "sha256": "8e9bce0beb8ceb165fbf70b90b3d3ce4cf4591b1d43a9aee4b01a9886e06937d"
+    },
+    {
+      "path": "CLAUDE_START_HERE.md",
+      "bytes": 16837,
+      "sha256": "3a49c80f8f0039cb530b580ec55b362b56a5e55dabaa60c752bba5b70a209449"
+    },
+    {
+      "path": "CLAUDE_VALIDATION.txt",
+      "bytes": 1157,
+      "sha256": "23a39c2f8fb33d56b6ac5d87b3ae942a204633b7c93bfa2b103adf8a84d79b2c"
+    },
+    {
+      "path": "CODEX_HANDOFF.md",
+      "bytes": 7489,
+      "sha256": "2137e8d99f4be4827a1cc6a2c7891a43cfcb42fc2b26d643a433c139a9c2ee80"
+    },
+    {
+      "path": "CODEX_START_PROMPT.txt",
+      "bytes": 2940,
+      "sha256": "2dd6a7bba81e374f3f94815afd198a94a31867860002f431e36b5705cd6ba61d"
+    },
+    {
+      "path": "MANIFEST.json",
+      "bytes": 1980,
+      "sha256": "a3ecdd5183470fa9960a957f47dcd73c52899cd7b201735355db604e52c52637"
+    },
+    {
+      "path": "README_START_HERE.md",
+      "bytes": 4254,
+      "sha256": "cd3d6270dc43ad57f501969d1cfbf2564c09721c59aba7517dc4ae9d9e67d79e"
+    },
+    {
+      "path": "specs/01_VOICE_COMPANION_SPEC.md",
+      "bytes": 31188,
+      "sha256": "8bcc0162f95e113132a018d028458b63177d6931a657a46cd5b4e5fd49937ef7"
+    },
+    {
+      "path": "specs/02_VISION_UPGRADE_SPEC.md",
+      "bytes": 18619,
+      "sha256": "50c12828057468be3625f06b01212ec343fe259b257481e9fd3941686bbc5f73"
+    },
+    {
+      "path": "VISION_UPGRADE_PLAN.md",
+      "bytes": 2494,
+      "sha256": "9ec098091c900ab6e27088f2488534dc323c410ba52bb6238549d7fafaa51545"
+    }
+  ]
+}

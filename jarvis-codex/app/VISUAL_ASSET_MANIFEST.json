@@ -1,0 +1,17 @@
+{
+  "master": "../assets/jarvis-character.png",
+  "packaged": "dist/renderer/jarvis-character.png",
+  "sha256": "fcc400840dfd4ddd7c7e6713d44984f755c99a64313e398132ef0c561991158d",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "alpha": true,
+  "origin": "Original AI-generated character supplied in the build pack",
+  "transformations": "Master unchanged. Code animation only. Derived 256px ICO for Windows packaging.",
+  "presets": [
+    "Orbit",
+    "Drift",
+    "Still"
+  ]
+}

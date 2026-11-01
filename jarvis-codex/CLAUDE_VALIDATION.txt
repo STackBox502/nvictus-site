@@ -1,0 +1,18 @@
+Handoff verification - November 1, 2026
+
+Fresh checks against current app source:
+npm test: PASS, 36 tests, 0 failures.
+npm run typecheck: PASS, exit 0.
+npm run lint: PASS, exit 0.
+
+No application implementation was changed for this handoff.
+Production build, installation and physical device tests were not repeated.
+User explicitly reports billing fixed and voice working; this is not an independently observed new live test.
+
+Claude independent review was requested through the locally connected read-only Claude Code tool.
+The tool failed with Transport closed. No Claude review or implementation result was received.
+Use CLAUDE_START_HERE.md in an editable Claude Code session to continue implementation.
+
+Archive includes an allowlisted source snapshot, lockfile, original specs/assets, handoff and this validation record.
+Dependencies, build outputs/installers, optional downloaded wake models, environment files, encrypted credentials, app data, history, recordings and test profiles are excluded.
+SOURCE_MANIFEST.json identifies each included file with SHA-256; the archive is reopened and every file checked against this manifest during creation.

@@ -1,0 +1,87 @@
+{
+  "name": "jarvis-codex",
+  "version": "0.1.1",
+  "private": true,
+  "description": "Jarvis Codex Windows voice companion",
+  "author": "Chris Conley",
+  "license": "UNLICENSED",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run typecheck && node scripts/build.mjs",
+    "start": "node scripts/launch.mjs",
+    "preview": "node scripts/launch.mjs --visual-preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests scripts",
+    "test": "tsx --test tests/*.test.ts",
+    "package:win": "npm run build && electron-builder --win portable nsis --x64",
+    "package:dir": "npm run build && electron-builder --win --dir --x64",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "build": {
+    "appId": "com.nvictus.jarvis.codex",
+    "productName": "Jarvis Codex",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json",
+      "!node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "wake",
+        "to": "wake",
+        "filter": [
+          "*.py",
+          "*.txt",
+          "*.md",
+          "*.json"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "signExecutable": false,
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "Jarvis-Codex-${version}-portable.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "Jarvis-Codex-${version}-setup.exe"
+    },
+    "compression": "store"
+  },
+  "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.75.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "ws": "8.22.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/ws": "8.18.2",
+    "electron": "45.2.1",
+    "electron-builder": "26.18.0",
+    "esbuild": "0.28.2",
+    "eslint": "10.14.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vite": "8.3.5"
+  }
+}

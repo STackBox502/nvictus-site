@@ -1,0 +1,15 @@
+Build my Jarvis application from the attached/extracted JARVIS_Codex_Build_Pack.
+
+Read AGENTS.md and README_START_HERE.md first. Inspect this workspace and any applicable repository instructions. Then read specs/01_VOICE_COMPANION_SPEC.md, specs/02_VISION_UPGRADE_SPEC.md, assets/ASSET_NOTES.md, and BUILD_AND_COMPARISON_CHECKLIST.md. Use the included assets/jarvis-character.png.
+
+You are building the same requested application independently while Claude Code builds its own version. Work only in this dedicated Codex project; create the application under app/. Do not touch Claude's folder. Use a distinct Jarvis Codex development identity, app data location, locks, ports, and build outputs. Keep the spoken assistant name Jarvis.
+
+Codex is the builder. The app still uses Claude as the default runtime brain, OpenAI as a selectable alternate, and ElevenLabs for speech-to-text and text-to-speech. Keep existing provider and credential requirements. Do not put API secrets in source, prompts, exports, logs, screenshots, or the packaged build. Use supported secure credential setup when needed. Do not assume a ChatGPT or Claude subscription automatically supplies runtime API access.
+
+Implement Phase 1 first: the Windows voice companion, floating character animation, typed chat, interruption, wake-word setup, settings, memory, and usage controls. Then implement Phase 2: optional camera and screen vision after recording the required working voice baseline. Read both phases up front so the design supports the extension. The Phase 2 authorization supersedes only the app-specific no-vision restrictions when that phase begins. Capture must stay off until I explicitly enable the selected source in the app. Do not add mouse/keyboard automation or unrelated integrations.
+
+Do the implementation and verification, not just a plan. Inspect installed SDK/runtime versions and current official provider documentation before wiring integrations. Preserve user changes. Use deterministic fixtures for appropriate automated checks and distinguish them from live provider/hardware tests. Never label a preview or mocked voice loop as a working live integration. If credentials or Windows hardware access are missing, complete all work permitted by the applicable environment rules and state precisely what remains. Do not ask me to choose routine implementation details already covered by the specs.
+
+Deliver source, lockfile, a runnable Windows package where the environment supports packaging, setup/customization/privacy/architecture documentation, a test report, and CODEX_HANDOFF.md. Update the comparison checklist with evidence. Keep app data isolated from the Claude version. Perform real microphone/camera tests one app at a time. Do not purchase, deploy, publish, or connect unrelated accounts.
+
+Begin by inspecting the workspace, recording the build plan and prerequisites, then continue through implementation and verification.
