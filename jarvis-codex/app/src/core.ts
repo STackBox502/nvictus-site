@@ -1,4 +1,4 @@
-import {type Message,type Settings} from './shared';
+import {type Message,type Settings,type Usage} from './shared';
 export class AppError extends Error {constructor(public code:string, message:string){super(message);}}
 export function safeError(e:unknown):string{
  if(e instanceof AppError)return `${e.code}: ${e.message}`;
@@ -46,4 +46,4 @@ export function systemPrompt(s:Settings,memories:Array<{text:string}>):string{
 }
 export class TurnGate{generation=0;private ids=new Set<string>();next(id?:string){if(id&&this.ids.has(id))return null;if(id){this.ids.add(id);if(this.ids.size>500)this.ids.delete(this.ids.values().next().value!);}return ++this.generation;}valid(n:number){return n===this.generation;}}
 export function clampBounds(b:{x:number;y:number;width:number;height:number},area:{x:number;y:number;width:number;height:number}){return {...b,width:Math.min(b.width,area.width),height:Math.min(b.height,area.height),x:Math.max(area.x,Math.min(b.x,area.x+area.width-b.width)),y:Math.max(area.y,Math.min(b.y,area.y+area.height-b.height))};}
-export const emptyUsage=()=>({turns:0,inputTokens:0,outputTokens:0,ttsChars:0,sttSeconds:0,timings:[]});
+export const emptyUsage=():Usage=>({turns:0,inputTokens:0,outputTokens:0,ttsChars:0,sttSeconds:0,timings:[],interruptions:[]});

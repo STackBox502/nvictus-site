@@ -22,19 +22,20 @@ export const SettingsSchema=z.object({
   overlaySize:z.number().int().min(180).max(420).default(270),opacity:z.number().min(.3).max(1).default(1),alwaysOnTop:z.boolean().default(true),dock:z.enum(['left','right']).default('right'),displayId:z.string().max(80).default(''),
   visibility:z.enum(['on-demand','always','hidden']).default('on-demand'),collapseSeconds:z.number().min(1).max(60).default(5),
   talkHotkey:z.string().min(1).max(80).default('CommandOrControl+Shift+Space'),stopHotkey:z.string().min(1).max(80).default('CommandOrControl+Shift+Backspace'),launchAtLogin:z.boolean().default(false),
-  wakeThreshold:z.number().min(.3).max(.95).default(.6),wakeRefractoryMs:z.number().int().min(1500).max(10000).default(3000),followupSeconds:z.number().int().min(0).max(30).default(0)
+  wakeThreshold:z.number().min(.3).max(.95).default(.6),wakeRefractoryMs:z.number().int().min(1500).max(10000).default(3000),followupSeconds:z.number().int().min(0).max(30).default(0),
+  bargeIn:z.boolean().default(true),bargeInSensitivity:z.enum(['low','medium','high']).default('medium'),conversationIdleMinutes:z.number().int().min(1).max(60).default(5)
 }).strict();
 export type Settings=z.infer<typeof SettingsSchema>;
 export const defaults=()=>SettingsSchema.parse({});
 export type Message={id:string;role:'user'|'assistant';text:string;created:number;status:'complete'|'streaming'|'interrupted'|'failed';heardText?:string;provider?:Provider;model?:string};
 export type Memory={id:string;text:string;created:number;updated:number};
-export type Usage={turns:number;inputTokens:number;outputTokens:number;ttsChars:number;sttSeconds:number;timings:Array<{turn:string;submitted:number;speechEnded?:number;committed?:number;firstText?:number;firstAudio?:number;firstPlayback?:number;finished?:number}>};
-export type Snapshot={settings:Settings;state:State;generation:number;messages:Message[];memories:Memory[];credentials:Record<Credential,'missing'|'session'|'encrypted'|'locked'>;connections:Partial<Record<Credential,string>>;notice:string;partial:string;usage:Usage;micLevel:number;outputLevel:number;micStatus:string;preview:boolean;asset:string;hotkeys:string;wakeAvailable:boolean;wakeReason:string;displays:Array<{id:string;label:string}>};
+export type Usage={turns:number;inputTokens:number;outputTokens:number;ttsChars:number;sttSeconds:number;timings:Array<{turn:string;submitted:number;speechEnded?:number;committed?:number;firstText?:number;firstAudio?:number;firstPlayback?:number;finished?:number}>;interruptions:Array<{onset:number;detected:number;stopped:number;during:string}>};
+export type Snapshot={settings:Settings;state:State;generation:number;messages:Message[];memories:Memory[];credentials:Record<Credential,'missing'|'session'|'encrypted'|'locked'>;connections:Partial<Record<Credential,string>>;notice:string;partial:string;usage:Usage;micLevel:number;outputLevel:number;micStatus:string;preview:boolean;asset:string;hotkeys:string;wakeAvailable:boolean;wakeReason:string;displays:Array<{id:string;label:string}>;conversation:boolean;sttActive:boolean};
 const id=z.string().min(1).max(100);
 export const CommandSchema=z.discriminatedUnion('type',[
  z.object({type:z.literal('snapshot')}).strict(),
  z.object({type:z.literal('send'),id,text:z.string().trim().min(1).max(16000)}).strict(),
- z.object({type:z.literal('control'),action:z.enum(['talk','mic-test','commit','stop','mute','unmute','show','hide','settings','quit','new','arm','disarm'])}).strict(),
+ z.object({type:z.literal('control'),action:z.enum(['talk','mic-test','commit','stop','mute','unmute','show','hide','settings','quit','new','arm','disarm','converse','end-conversation'])}).strict(),
  z.object({type:z.literal('settings'),value:SettingsSchema,acknowledgeProvider:z.boolean().optional()}).strict(),
  z.object({type:z.literal('secret'),provider:Credential,value:z.string().trim().min(8).max(512),persist:z.boolean()}).strict(),
  z.object({type:z.literal('delete-secret'),provider:Credential}).strict(),
@@ -56,6 +57,6 @@ export const CommandSchema=z.discriminatedUnion('type',[
 export type Command=z.infer<typeof CommandSchema>;
 export type Catalog={models:Array<{id:string;name:string}>;voices?:Array<{id:string;name:string}>};
 export type Result={ok:true;data?:Snapshot|Catalog|string}|{ok:false;error:string};
-export type Event={type:'snapshot';value:Snapshot}|{type:'capture';action:'start'|'stop';generation:number;mode?:'command'|'local'|'test'}|{type:'audio';generation:number;sequence:number;pcm:Uint8Array}|{type:'cancel';generation:number}|{type:'tab';tab:string}|{type:'decode-asset';id:string;bytes:Uint8Array};
+export type Event={type:'snapshot';value:Snapshot}|{type:'capture';action:'start'|'stop';generation:number;mode?:'command'|'local'|'test'|'conversation'}|{type:'audio';generation:number;sequence:number;pcm:Uint8Array}|{type:'cancel';generation:number}|{type:'tab';tab:string}|{type:'decode-asset';id:string;bytes:Uint8Array};
 export type Bridge={command:(c:Command)=>Promise<Result>;pcm:(generation:number,sequence:number,pcm:ArrayBuffer)=>Promise<boolean>;onEvent:(callback:(e:Event)=>void)=>()=>void};
 declare global{interface Window{jarvis:Bridge;}}

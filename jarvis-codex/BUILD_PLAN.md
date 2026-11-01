@@ -38,3 +38,14 @@ Fixtures are not live integrations. Startup and screenshots do not prove hardwar
 - Phase 2 capture implementation is held until that real baseline, with plan and explicit not-implemented reports saved.
 
 See CODEX_HANDOFF.md and app/TEST_REPORT.md for exact evidence and remaining checks. The full requested two-phase application is not declared complete.
+
+## Claude continuation: Conversation Mode (2026-11-01)
+
+- [x] Baseline recorded (36 tests, typecheck, lint)
+- [x] Capture session separated from response lifetime (`captureGen` vs `gate.generation`)
+- [x] Local speech detector (noise floor, voicing, impulse rejection, calibration, stationary-noise guard) + echo-aware barge-in using played-chunk levels
+- [x] Immediate local stop, flush, late-packet rejection; bounded pre-roll; one-turn merge; honest heard text; backchannel handling
+- [x] UI (start/end/interrupt, live status, settings, usage), tray, hotkey, limits, error endings
+- [x] 22 new fixture tests, 3 new smoke checks, version 0.2.0
+- [ ] Live acceptance on the laptop (speakers + mic): see CLAUDE_CONVERSATION_REPORT.md
+- [ ] Package and install 0.2.0 after live acceptance

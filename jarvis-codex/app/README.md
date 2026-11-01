@@ -33,3 +33,7 @@ npm start
 Installed versions are pinned in package-lock.json. Initial runtime: Node 24.14.0 / npm 11.9.0. Electron 45.2.1, React 19.3.1, Vite 8.3.5, TypeScript 6.0.3. Provider transports use Node fetch and ws 8.22.1; no provider SDK or agent framework is required. Python is optional and used only for local wake detection.
 
 Read SETUP_WINDOWS.md, CUSTOMIZATION.md, PRIVACY.md, ARCHITECTURE.md and TEST_REPORT.md. CODEX_HANDOFF.md in the pack root records the remaining work. No API credentials, recordings, or captured screens are distributed.
+
+## Conversation Mode (0.2.0)
+
+Press **◎ Start conversation** to talk back and forth with the microphone kept open. Speak over Jarvis to interrupt it. **Interrupt** stops it and keeps listening. **End conversation**, Stop, or Mute turn the microphone off. Speech is detected locally, and audio goes to ElevenLabs only while you're talking. Settings are under Audio → Conversation Mode. Details, the live test plan, and limits: `../CLAUDE_CONVERSATION_REPORT.md`.

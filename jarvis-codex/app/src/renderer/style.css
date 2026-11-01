@@ -9,3 +9,9 @@
 @media(max-width:1000px){.app-shell{grid-template-columns:174px 1fr}.sidebar{padding:25px 12px}.brand{font-size:16px;gap:9px;margin-bottom:40px}.welcome-copy h2{font-size:28px}.main>header{padding:24px}.provider-strip{margin:0 24px}.content{padding-left:24px;padding-right:24px}.notice,.preview-banner{margin-left:24px;margin-right:24px}.composer{padding:13px 24px 18px}.composer-actions button{padding:7px 8px;font-size:9px}.welcome-copy{padding-left:10px}.credential-form{align-items:stretch}.stats-grid{grid-template-columns:repeat(2,1fr)}}
 
 .overlay-body .character .aura{display:none}
+
+.conversation-live{background:linear-gradient(135deg,var(--violet,#aa80ff),#6d4bd1);color:#fff;border:1px solid #c9b3ff;box-shadow:0 0 14px rgba(170,128,255,.45)}
+.conversation-status{display:flex;align-items:center;gap:8px;margin:8px 0;padding:8px 12px;border-radius:10px;border:1px solid rgba(170,128,255,.45);background:rgba(170,128,255,.10);font-size:12px;letter-spacing:.04em}
+.conversation-status .live-dot{width:9px;height:9px;border-radius:50%;background:#7ef0a8;box-shadow:0 0 8px #7ef0a8;flex:none}
+@media (prefers-reduced-motion:no-preference){.conversation-status .live-dot{animation:jarvis-live 1.6s ease-in-out infinite}}
+@keyframes jarvis-live{50%{opacity:.35}}

@@ -77,3 +77,19 @@ The production dependency audit reported zero vulnerabilities. The full developm
 Unsigned x64 portable and per-user NSIS artifacts are generated under `release`. Compression is set to store for reliable local packaging; outputs are larger. Python/wake models are optional separate installs; credentials/test profiles/recordings are excluded. Final file sizes and hashes are recorded by the package audit. Source is separately archived in the pack's `deliverables` directory.
 
 The final asar excludes node_modules because all runtime dependencies are bundled; their license notices are included in dist. This removed unnecessary third-party source/tests found by the initial archive audit. The final archive audit passed.
+
+## 0.2.0 Conversation Mode (Claude Code, 2026-11-01)
+
+Environment: Linux cloud container, Xvfb, Chromium fake microphone. No real speakers or microphone, no API keys, **no provider calls**. Earlier entries above are historical and unchanged.
+
+| Check | Result | Kind |
+|---|---|---|
+| Baseline (0.1.1 source as received) | 36/36 tests, typecheck, lint | fixtures/static |
+| `npm test` | 58/58 (adds 11 speech-detector + 11 conversation fixtures) | fixtures |
+| Mutation: barge-in call removed | 4 interruption tests fail; restored → all pass | test validity |
+| typecheck / lint / build | pass | static/build |
+| `npm run smoke` | 21/21 (adds: start refused without setup; continuous fake-mic capture with live status and End releases mic; settings card renders). Speech sessions use the `--test-mode` offline stub | Electron + fake device |
+
+Fixture detection timing (synthetic voiced audio, 80 ms packets), medium sensitivity: turn start 180 ms after onset, barge-in 280 ms after the user starts talking over playback (low 220/360, high 140/220). Echo-only playback (learned coupling about −25 dB) never triggered. Loud first-reply echo did not trigger.
+
+**Pending live acceptance on the target laptop (speakers + mic):** the sequence in `../CLAUDE_CONVERSATION_REPORT.md`. Nothing in this section is a live hardware or provider result.

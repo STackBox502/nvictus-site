@@ -27,3 +27,7 @@ Main owns fixed official provider endpoints and credentials. Renderer has no Nod
 Memory is user data and cannot authorize tools. No LLM tools are attached. Local command matching is exact for controls; deletion redirects to confirmed UI operations. Errors omit raw provider bodies, authorization values and sensitive URLs. There are no live test credentials in source or packages.
 
 Close-to-tray keeps the process and any explicitly armed microphone mode alive; the tray tooltip/menu and chat retain mic controls. Hide character does not mean mute. Quit stops capture, providers and the helper. The optional wake detector is never a second microphone owner.
+
+## Conversation Mode (0.2.0)
+
+While a conversation is on, the microphone stays open and is analysed **on this computer** to detect when you're speaking. Audio is sent to ElevenLabs only during a detected turn: from about 200 ms before you start, until the end-of-turn pause. Silence and Jarvis's own playback are not sent. Up to 800 ms of recent audio is held in RAM as pre-roll and is never written to disk. The status bar shows when speech is being sent. End conversation, Stop, Mute, sleep/lock, or the silence timeout turn the microphone off. A conversation never starts by itself.

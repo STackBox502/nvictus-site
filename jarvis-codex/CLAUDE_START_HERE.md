@@ -1,3 +1,5 @@
+> **Status update (Claude, 2026-11-01):** Conversation Mode with spoken interruption is implemented in 0.2.0 and passes fixtures and the fake-device smoke test. Live speaker/mic acceptance is pending. Read `CLAUDE_CONVERSATION_REPORT.md` first.
+
 # Claude handoff: continue the working Jarvis app
 
 Updated November 1, 2026. Prepared at Chris Conley's request for Claude to continue this exact implementation. This document supersedes stale operational status in CODEX_HANDOFF.md, README.md and TEST_REPORT.md; their historical evidence remains valid for the checks actually performed.

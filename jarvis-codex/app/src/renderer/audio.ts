@@ -22,7 +22,7 @@ export class AudioEngine{
     if(this.inFlight>12){this.stopInput();void api.command({type:'mic-status',generation,status:'unavailable'});return;}
     this.inFlight++;void api.pcm(generation,this.sequence++,pcm).finally(()=>{if(this.captureGen===generation)this.inFlight--;});
     const state=this.snapshot()?.state;
-    if(state==='listening'&&this.mode!=='test'){
+    if(state==='listening'&&this.mode!=='test'&&this.mode!=='conversation'){
      if(rms>.018){this.heard=true;this.silenceAt=performance.now();}
      if(this.heard&&this.silenceAt&&performance.now()-this.silenceAt>settings.silenceMs){this.stopped=true;void api.command({type:'control',action:'commit'});}
      if(!this.heard&&performance.now()-this.captureAt>12000){this.stopped=true;void api.command({type:'control',action:'stop'});}
