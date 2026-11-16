@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JARVIS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%237fe9ff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%237fe9ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/hud.css">
+<script type="importmap">
+{ "imports": { "three": "/vendor/three.module.min.js", "three/addons/": "/vendor/addons/" } }
+</script>
+<script>window.JARVIS_TOKEN = "__JARVIS_TOKEN__";</script>
+</head>
+<body data-state="offline">
+
+<canvas id="galaxy" aria-hidden="true"></canvas>
+<div id="galaxy-labels" aria-hidden="true"></div>
+<div id="vignette" aria-hidden="true"></div>
+
+<header id="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="word" id="brand-name">JARVIS</span>
+    <span class="chip" id="model-chip" title="The Claude model Jarvis is thinking with">—</span>
+  </div>
+  <div class="meta">
+    <button class="meta-item" id="connectors-chip" title="Connected apps Jarvis can use">connectors —</button>
+    <span class="meta-item" id="voice-chip" title="Voice engine">voice —</span>
+    <span class="meta-item" id="usage-chip" title="Share of your current Claude usage window used" hidden></span>
+  </div>
+</header>
+
+<aside id="tools" aria-live="polite" aria-label="Tool activity"></aside>
+
+<section id="core" aria-live="polite">
+  <button id="orb-wrap" title="Click to talk · click again to stop">
+    <canvas id="orb" width="640" height="640"></canvas>
+  </button>
+  <div id="state-label">Offline</div>
+  <div id="caption"></div>
+  <div id="heard"></div>
+</section>
+
+<section id="panel" hidden aria-label="Content panel">
+  <div class="panel-head">
+    <h2 id="panel-title"></h2>
+    <div class="panel-actions">
+      <button id="panel-read" class="ghost" title="Read this aloud">Read aloud</button>
+      <button id="panel-close" class="icon" aria-label="Close panel">✕</button>
+    </div>
+  </div>
+  <div id="panel-body" class="md"></div>
+</section>
+
+<section id="workshop" hidden aria-label="3D workshop">
+  <div class="ws-head">
+    <div><span class="eyebrow">Workshop</span><h2 id="ws-title">Empty bench</h2></div>
+    <div class="ws-actions">
+      <button id="ws-explode" class="ghost">Pull apart</button>
+      <button id="ws-labels" class="ghost">Labels</button>
+      <button id="ws-spin" class="ghost">Spin</button>
+      <button id="ws-save" class="ghost">Save picture</button>
+      <button id="ws-close" class="icon" aria-label="Close workshop">✕</button>
+    </div>
+  </div>
+  <div id="ws-stage">
+    <canvas id="ws-canvas"></canvas>
+    <div id="ws-labels-layer"></div>
+    <div id="ws-empty">
+      <p>The bench is yours.</p>
+      <span>Say “Jarvis, build me a…”, or drop a sketch, photo or floor plan anywhere on this window.</span>
+    </div>
+    <ol id="ws-parts"></ol>
+    <div id="ws-busy" hidden><i></i><span>Building…</span></div>
+  </div>
+</section>
+
+<div id="screen-pip" hidden>
+  <div class="pip-head"><span><i class="live"></i> Screen shared</span><button id="pip-size" class="icon" aria-label="Resize preview">⤢</button></div>
+  <div class="pip-stage">
+    <video id="screen-video" muted playsinline></video>
+    <div id="pointer" hidden><i></i><b></b></div>
+  </div>
+</div>
+
+<div id="approval" hidden role="alertdialog" aria-labelledby="ap-title">
+  <span class="eyebrow" id="ap-kind">Approval needed</span>
+  <h3 id="ap-title"></h3>
+  <p id="ap-summary"></p>
+  <details><summary>Details</summary><pre id="ap-detail"></pre></details>
+  <div class="ap-actions">
+    <button id="ap-allow" class="primary">Approve</button>
+    <button id="ap-always" class="ghost">Always allow this</button>
+    <button id="ap-deny" class="ghost danger">Deny</button>
+  </div>
+  <small id="ap-hint"></small>
+</div>
+
+<div id="banner" hidden></div>
+<div id="toast" hidden></div>
+
+<footer id="dock">
+  <div class="dock-buttons">
+    <button id="btn-ear" class="dock-btn" aria-pressed="false" title="Hands-free: say “Jarvis …” (H)">
+      <svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 3.2-2.2 4-3 6-.6 1.6-1 4-3.5 4A3.5 3.5 0 0 1 8 15.5"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-1.5 3.5"/></svg>
+      <span>Hands-free</span>
+    </button>
+    <button id="btn-mic" class="dock-btn" title="Hold to talk (hold Space)">
+      <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      <span>Hold to talk</span>
+    </button>
+    <button id="btn-screen" class="dock-btn" aria-pressed="false" title="Share your screen so Jarvis can see it">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+      <span>Share screen</span>
+    </button>
+    <button id="btn-workshop" class="dock-btn" aria-pressed="false" title="Open the 3D workshop">
+      <svg viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg>
+      <span>Workshop</span>
+    </button>
+    <button id="btn-attach" class="dock-btn" title="Give Jarvis a picture or file">
+      <svg viewBox="0 0 24 24"><path d="m20 11-8.5 8.5a5 5 0 0 1-7-7L13 4a3.3 3.3 0 0 1 4.7 4.7L9.5 17a1.7 1.7 0 0 1-2.4-2.4L15 6.7"/></svg>
+      <span>Attach</span>
+    </button>
+    <button id="btn-new" class="dock-btn" title="Start a fresh conversation">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      <span>New chat</span>
+    </button>
+    <button id="btn-settings" class="dock-btn" title="Settings and system check">
+      <svg viewBox="0 0 24 24"><path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.5"/><circle cx="10" cy="17" r="2.5"/></svg>
+      <span>Settings</span>
+    </button>
+  </div>
+  <form id="ask" autocomplete="off">
+    <div id="attachments"></div>
+    <input id="ask-input" type="text" placeholder="Type to Jarvis, or say “Jarvis…”" aria-label="Message Jarvis">
+    <button id="ask-send" class="primary" type="submit">Send</button>
+    <button id="ask-stop" class="ghost danger" type="button" hidden>Stop</button>
+  </form>
+  <input id="file-input" type="file" hidden multiple>
+</footer>
+
+<div id="drop" hidden><div><b>Drop it on the bench</b><span>Pictures, sketches, floor plans, documents</span></div></div>
+
+<div id="wake" hidden>
+  <div class="wake-card">
+    <span class="mark big" aria-hidden="true"></span>
+    <h1 id="wake-title">Bring Jarvis online</h1>
+    <p id="wake-text">Click once so the browser allows sound and the microphone.</p>
+    <button id="wake-go" class="primary large">Start</button>
+  </div>
+</div>
+
+<dialog id="settings">
+  <form method="dialog" class="settings-card" id="settings-form">
+    <div class="set-head">
+      <div><span class="eyebrow">System</span><h2>Settings &amp; check</h2></div>
+      <button class="icon" value="close" aria-label="Close settings">✕</button>
+    </div>
+
+    <ul id="checks"></ul>
+
+    <fieldset>
+      <legend>Voice — ElevenLabs</legend>
+      <label>API key
+        <input id="set-key" type="password" placeholder="Paste your ElevenLabs API key" autocomplete="off" spellcheck="false">
+      </label>
+      <p class="hint" id="set-key-hint">Stored only in a private file on this computer and sent only to ElevenLabs.</p>
+      <label>Voice
+        <select id="set-voice"><option value="">Save a key to load your voices</option></select>
+      </label>
+      <div class="row">
+        <button type="button" class="ghost" id="set-voice-test">Test voice</button>
+        <span id="set-voice-result" class="hint"></span>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>You &amp; Jarvis</legend>
+      <div class="grid2">
+        <label>What should Jarvis call you?<input id="set-address" type="text" maxlength="40"></label>
+        <label>Assistant name (wake word)<input id="set-name" type="text" maxlength="40"></label>
+      </div>
+      <label>Second brain folder (shown as the galaxy)
+        <input id="set-brain" type="text" spellcheck="false" placeholder="/Users/you/Documents">
+      </label>
+      <div class="grid2">
+        <label>Brain (Claude model)
+          <select id="set-model">
+            <option value="">Claude Code default</option>
+            <option value="fable">Fable (most capable)</option>
+            <option value="opus">Opus</option>
+            <option value="sonnet">Sonnet (faster)</option>
+            <option value="haiku">Haiku (fastest)</option>
+          </select>
+        </label>
+        <label>Thinking effort
+          <select id="set-effort">
+            <option value="">Default</option>
+            <option value="low">Low (snappiest voice replies)</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+      </div>
+      <label class="check"><input id="set-convo" type="checkbox"> Conversation mode — when Jarvis asks you a question, answer without the wake word</label>
+      <label class="check"><input id="set-chrome" type="checkbox"> Let Jarvis control Chrome (needs the Claude in Chrome extension — experimental)</label>
+    </fieldset>
+
+    <div class="set-foot">
+      <span id="set-status" class="hint"></span>
+      <button type="button" class="ghost" id="set-reconnect">Reconnect Claude</button>
+      <button type="button" class="ghost" id="set-reset-perms" title="Forget every “always allow” you have given">Reset approvals</button>
+      <button type="button" class="primary" id="set-save">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="/hud.js"></script>
+</body>
+</html>
