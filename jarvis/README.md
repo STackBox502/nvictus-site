@@ -161,6 +161,11 @@ node test/live-protocol.mjs
 node test/e2e.mjs
 ```
 
-`unit` is offline. `live-protocol` drives your real Claude Code (uses a little usage) to prove streaming,
+```bash
+node test/live-eleven.mjs
+```
+
+`live-eleven` proves your real ElevenLabs key, voice and models by speaking a sentence and transcribing it
+back (uses a few dozen characters of quota). `unit` is offline. `live-protocol` drives your real Claude Code (uses a little usage) to prove streaming,
 screen images, the approval gate and interrupt. `e2e` runs the whole app in headless Chrome against real
 Claude with a stand-in for ElevenLabs; it needs Playwright, which Jarvis itself does not.
