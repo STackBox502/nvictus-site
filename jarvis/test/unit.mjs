@@ -150,6 +150,10 @@ test('ElevenLabs client: speech, transcription, voices, and clear errors', async
   const bad = await voice.check();
   assert.equal(bad.ok, false);
   assert.equal(bad.code, 'bad_key');
+  saveEnv({ ELEVENLABS_API_KEY: 'key-id-not-key' });
+  const idNotKey = await voice.check();
+  assert.equal(idNotKey.code, 'bad_key', 'a 400 authentication error is still a key problem');
+  assert.match(idNotKey.message, /start with 'sk_'/, "ElevenLabs' own explanation is passed through");
   saveEnv({ ELEVENLABS_API_KEY: 'test-key', ELEVENLABS_VOICE_ID: 'missing-voice' });
   assert.equal((await voice.check()).code, 'bad_voice');
   mock.server.close();

@@ -17,6 +17,8 @@ export function startMockEleven() {
     const chunks = [];
     for await (const c of req) chunks.push(c);
     const body = Buffer.concat(chunks);
+    // Mirrors real responses seen from api.elevenlabs.io: the key's ID pasted instead of the key gives a 400, a wrong key a 401.
+    if (req.headers['xi-api-key'] === 'key-id-not-key') return send(400, { detail: { type: 'authentication_error', code: 'invalid_api_key', message: "API key ID used as API key - only valid API keys can be used. API keys start with 'sk_' and are shown when the key is created or rotated.", status: 'api_key_id_used_as_api_key' } });
     if (req.headers['xi-api-key'] !== 'test-key') return send(401, { detail: { status: 'invalid_api_key', message: 'Invalid API key' } });
     const tts = url.pathname.match(/^\/v1\/text-to-speech\/([^/]+)\/stream$/);
     if (tts && req.method === 'POST') {

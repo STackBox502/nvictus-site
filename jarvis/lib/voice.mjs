@@ -10,22 +10,40 @@ export class VoiceError extends Error {
 }
 
 async function explain(res) {
-  let detail = '';
+  // Real ElevenLabs errors look like { detail: { type, code, status, message } }; older ones use a plain string.
+  let detail = '', tag = '';
   try {
     const body = await res.text();
     try {
       const j = JSON.parse(body);
-      const d = j.detail;
-      detail = typeof d === 'string' ? d : d?.message || d?.status || j.message || body.slice(0, 200);
+      const d = j.detail ?? j;
+      if (typeof d === 'string') detail = d;
+      else {
+        detail = d?.message || j.message || body.slice(0, 200);
+        tag = [d?.type, d?.code, d?.status].filter(Boolean).join(' ');
+      }
     } catch { detail = body.slice(0, 200); }
   } catch { /* ignore */ }
   const s = res.status;
+  const hint = `${tag} ${detail}`;
   let code = 'elevenlabs_error';
   let msg = `ElevenLabs returned ${s}${detail ? ': ' + detail : ''}`;
-  if (s === 401) { code = 'bad_key'; msg = `ElevenLabs rejected the API key${detail ? ' (' + detail + ')' : ''}. Check the key in Settings.`; }
-  else if (s === 402 || /quota|credit/i.test(detail)) { code = 'quota'; msg = `ElevenLabs credits are used up or the plan does not cover this${detail ? ' (' + detail + ')' : ''}.`; }
-  else if (s === 404 || /voice.*not.*found/i.test(detail)) { code = 'bad_voice'; msg = 'That ElevenLabs voice was not found on this account. Pick another voice in Settings.'; }
-  else if (s === 429) { code = 'rate_limited'; msg = 'ElevenLabs is rate-limiting requests; slowing down.'; }
+  if (s === 401 || /invalid_api_key|authentication_error|api_key|unauthorized|needs_authorization/i.test(tag)) {
+    code = 'bad_key';
+    msg = `ElevenLabs rejected the API key${detail ? ' (' + detail + ')' : ''}. Check the key in Settings.`;
+  } else if (/missing_permissions|permission/i.test(hint)) {
+    code = 'bad_key';
+    msg = `This ElevenLabs key is not allowed to do that${detail ? ' (' + detail + ')' : ''}. Give the key Text to Speech, Speech to Text and Voices access.`;
+  } else if (s === 402 || /quota|credit|payment_required|paid_plan/i.test(hint)) {
+    code = 'quota';
+    msg = `ElevenLabs credits are used up or the plan does not cover this${detail ? ' (' + detail + ')' : ''}.`;
+  } else if (s === 404 || /voice_not_found|voice.*not.*found/i.test(hint)) {
+    code = 'bad_voice';
+    msg = 'That ElevenLabs voice was not found on this account. Pick another voice in Settings.';
+  } else if (s === 429) {
+    code = 'rate_limited';
+    msg = 'ElevenLabs is rate-limiting requests; slowing down.';
+  }
   return new VoiceError(msg, { status: s, code });
 }
 
